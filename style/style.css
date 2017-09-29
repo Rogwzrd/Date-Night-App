@@ -16,3 +16,7 @@ h4 {
 .dropdown, .input, .segment {
     margin: 0 0 10px 0;
 }
+
+#submit {
+    margin-top: 10px;
+}
