@@ -4,7 +4,6 @@ var title = "pasta";
 //api query
 var queryURL = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b&q=" + title;
 
-
 //yummly api
 $.ajax({
     url: queryURL,
