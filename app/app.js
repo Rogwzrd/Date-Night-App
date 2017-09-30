@@ -172,6 +172,4 @@ $(document).ready(function() {
  function sliderChange4(val) {
      document.getElementById("sliderStatus4").innerHTML = val;
  }
-
-
  console.log();
