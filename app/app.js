@@ -16,7 +16,7 @@
             "1": ["The Confirmist", "Touch of Evil", "The Dark Knight", "Rebecca", "La La Land"],
             "2": ["A Streecar Named Desire", "The Night of the Hunter", "Lawrence of Arabia", "The Babadook", "Vertigo"],
             "3": ["12 Angry Men", "The 400 Blows", "All Quiet on the Western Front", "Army of Shadows", "Baby Driver"],
-            "4": ["Seven Samurai". "Bicycle Thieves", "Hell or High Water", "The Treasure of Sierra Madre", "Arrival"],
+            "4": ["Seven Samurai", "Bicycle Thieves", "Hell or High Water", "The Treasure of Sierra Madre", "Arrival"],
             "5": ["Rear Window", "Taxi Driver", "Argo", "M", "Alien"],
             "6": ["Gravity", "Sunset Boulevard", "Selma", "Logan", "Rashoman"],
             "7": ["The Battle of Algiers", "The Maltese Falcon", "12 Years a Slave", "Repulsion", "Spotlight"],
@@ -123,3 +123,20 @@ $("#submit").click(function(e) {
 
 });
 
+
+//grabbing slider values
+
+function sliderChange(val) {
+    document.getElementById("sliderStatus").innerHTML=val;
+    //document.getElementById("sliderStatus2").innerHTML=val;
+    //document.getElementById("sliderStatus3").innerHTML=val;
+}
+function sliderChange2(val) {
+    document.getElementById("sliderStatus2").innerHTML=val;
+}
+function sliderChange3(val) {
+    document.getElementById("sliderStatus3").innerHTML=val;
+}
+function sliderChange4(val) {
+    document.getElementById("sliderStatus4").innerHTML=val;
+}

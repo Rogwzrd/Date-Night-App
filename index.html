@@ -106,13 +106,20 @@
                 </div>
             
                 <div id="slidecontainer1">
-                    <input type="range" min="0" max="9" value="5" class="slider" id="sliderRange">
+                    <input type="range" min="0" max="9" value="5" step="1"class="slider" id="sliderRange" onChange="sliderChange(this.value)">
+                    Spicy = <span id="sliderStatus"> 5</span>
                   </div>
                   <div id="slidecontainer2">
-                    <input type="range" min="0" max="9" value="5" class="slider" id="myRange">
+                    <input type="range" min="0" max="9" value="5" step="1" class="slider" id="myRange" onChange="sliderChange2(this.value)">
+                    Savory = <span id="sliderStatus2"> 5</span>
                   </div>
                   <div id="slidecontainer3">
-                    <input type="range" min="0" max="9" value="5" class="slider" id="myRange">
+                    <input type="range" min="0" max="9" value="5" step="1" class="slider" id="myRange3" onChange="sliderChange3(this.value)">
+                    Salty = <span id="sliderStatus3"> 5</span>
+                  </div>
+                  <div id="slidecontainer4">
+                    <input type="range" min="0" max="9" value="5" step="1" class="slider" id="myRange4" onChange="sliderChange4(this.value)">
+                    Sweet = <span id="sliderStatus4"> 5</span>
                   </div>
                 <button class="ui blue button" id="submit" type="submit">Submit</button>
             </div>
