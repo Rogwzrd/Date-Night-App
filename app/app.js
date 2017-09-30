@@ -121,3 +121,16 @@ $("#submit").click(function(e) {
     $("#mainInformationDiv").append(getRecipeButton);
 
 });
+
+$(document).on("click", "#flavorPage", function(event) {
+    event.preventDefault();
+
+} )
+
+$(document).on("click", ".recipe", function(a) {
+    event.preventDefault();
+    var recipeNameDiv = $("<h2>").text("recipe name is: ..."),
+        ingredientsDiv = $("<h3>").text("ingredients are: ..."),
+        prepTimeDiv = $("<h3>").text("prep time is: ..."),
+        howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
+})
