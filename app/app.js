@@ -1,4 +1,6 @@
- var movies = {
+$(document).ready(function() {
+
+    var movies = {
         action: {
             "0": ["Star Wars: Episode V - The Empire Strikes Back", "Spartacus", "Sicario", "The Lord of the Rings: The Two Towers", "Chicken Run"],
             "1": ["Badlands", "Aguirre, the Wrath of God", "Casino Royale", "Hunt for the Wilderpeople", "The Lego Batman Movie"],
@@ -16,7 +18,7 @@
             "1": ["The Confirmist", "Touch of Evil", "The Dark Knight", "Rebecca", "La La Land"],
             "2": ["A Streecar Named Desire", "The Night of the Hunter", "Lawrence of Arabia", "The Babadook", "Vertigo"],
             "3": ["12 Angry Men", "The 400 Blows", "All Quiet on the Western Front", "Army of Shadows", "Baby Driver"],
-            "4": ["Seven Samurai". "Bicycle Thieves", "Hell or High Water", "The Treasure of Sierra Madre", "Arrival"],
+            "4": ["Seven Samurai", "Bicycle Thieves", "Hell or High Water", "The Treasure of Sierra Madre", "Arrival"],
             "5": ["Rear Window", "Taxi Driver", "Argo", "M", "Alien"],
             "6": ["Gravity", "Sunset Boulevard", "Selma", "Logan", "Rashoman"],
             "7": ["The Battle of Algiers", "The Maltese Falcon", "12 Years a Slave", "Repulsion", "Spotlight"],
@@ -49,8 +51,8 @@
         }
     };
     
-    var quisineVal = [],
-        dietaryVal = [],
+    var dietaryVal = [],
+        cuisineVal = "",
         includeVal = [],
         excludeVal = [],
         spicyVal = 0,
@@ -94,18 +96,14 @@
         console.log(response);
     })
 
-$(document).ready(function() {
-    $('.ui.dropdown')
-        .dropdown();
+    //dropdown selections
+    $('.ui.dropdown').dropdown()
 
-    $('.ui.range').range({
-        min: 0,
-        max: 10,
-        start: 5,
-        step: 1,
+    $(".ui.dropdown").on("change",function () {
+       dietaryVal = $(".ui.dropdown").val();
+       console.log(dietaryVal);
     });
 
-});
 
 console.log("test");
 
@@ -123,3 +121,5 @@ $("#submit").click(function(e) {
 
 });
 
+
+});
