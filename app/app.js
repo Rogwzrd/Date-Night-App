@@ -24,12 +24,13 @@
             "9": ["Ciizen Kane", "All About Eve", "Metropolis", "The Godfather", "Dunkirk"]
         },
         romance: {
-            "0": [],
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": ["Her", "The Umbrellas of Cherbourg", "Beauty and the Beast", "Three Colors: Red", "The Best Years of Our Lives", ""],
+
+            "0": ["West Side Story", "Say Anything...", "The Apartment", "Elevartor to the Gallows", "Groundhog Day"],
+            "1": ["The Happiest Day in the Life of Olli Maki", "Only Yesteerday", "Lost in Translation", "The Crying Game"],
+            "2": ["Your Name.", "Crouching Tiger, Hidden Dragon", "Wings of Desire", "Sense and Sensibility", "The Handmaiden"],
+            "3": ["The Princess Bride", "Sideways", "Enough Said", "Slumdog Millionaire", "Bull Durham"],
+            "4": ["Before Sunrise", "Three Colors: Blue", "Bringing Up Baby", "The Hustler", "Sunrise: A Song of Two Humans"],
+            "5": ["Her", "The Umbrellas of Cherbourg", "Beauty and the Beast", "Three Colors: Red", "The Best Years of Our Lives"],
             "6": ["City Lights", "Annie Hall", "Miracle on 34th Street", "Beauty and the Beast", "Gentelman Prefer Blondes"],
             "7": ["An American in Paris", "Before Midnight", "The Red Shoes", "The Artist", "Carol"],
             "8": ["The Philadelphia Story", "Vertigo", "Gone with the Wind", "On the Waterfront", "Roman Holiday"],
@@ -94,6 +95,81 @@
         console.log(response);
     })
 
+
+    //dropdown selections
+    $('.ui.dropdown').dropdown();
+
+    // ===========================================================
+    // NEW (Star) - I replaced the previous function with these two functions
+    // The variables for diet and cuisine now change values based on dropdown selections
+    $("#diet").on("change",function () {
+       dietaryVal = $("#diet").val();
+       console.log(dietaryVal);
+    });
+
+    $("#cuisine").on("change",function () {
+        cuisineVal = $("#cuisine").val();
+        console.log(cuisineVal);
+    });
+
+    //============================================================
+
+
+
+    console.log("test");
+
+    //remove search-form
+    $("#submit").click(function(e) {
+        e.preventDefault();
+        console.log("button test")
+        //removes the search etc from main page when button clicked
+        $("#search-form").remove();
+        //adds dummy text for recipe results page 
+        $("#mainInformationDiv").append("<h1>" + "recipe results...");
+        //Creates a new button and appends to the page (for getting recipe)
+        var getRecipeButton = $("<input type='button' value='new button'>");
+        $("#mainInformationDiv").append(getRecipeButton);
+
+    });
+
+    $(document).on("click", "#flavorPage", function(event) {
+        event.preventDefault();
+
+    });
+
+    $(document).on("click", ".recipe", function(a) {
+        event.preventDefault();
+        var recipeNameDiv = $("<h2>").text("recipe name is: ..."),
+            ingredientsDiv = $("<h3>").text("ingredients are: ..."),
+            prepTimeDiv = $("<h3>").text("prep time is: ..."),
+            howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
+    });
+
+
+
+
+    //grabbing slider values
+
+    function sliderChange(val) {
+        document.getElementById("sliderStatus").innerHTML = val;
+        //document.getElementById("sliderStatus2").innerHTML=val;
+        //document.getElementById("sliderStatus3").innerHTML=val;
+    }
+
+    function sliderChange2(val) {
+        document.getElementById("sliderStatus2").innerHTML = val;
+    }
+
+    function sliderChange3(val) {
+        document.getElementById("sliderStatus3").innerHTML = val;
+    }
+
+    function sliderChange4(val) {
+        document.getElementById("sliderStatus4").innerHTML = val;
+    }
+
+});
+=======
 $(document).ready(function() {
     $('.ui.dropdown')
         .dropdown();
@@ -147,3 +223,4 @@ function sliderChange4(val) {
 
 
 console.log();
+
