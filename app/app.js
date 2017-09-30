@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('.ui.dropdown')
-        .dropdown()
+        .dropdown('get value')
     ;
 
     $('.ui.range').range({
