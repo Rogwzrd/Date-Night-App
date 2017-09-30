@@ -124,6 +124,13 @@ $("#submit").click(function(e) {
 });
 
 
+$("#myRange3, #myRange").on('change', function(){
+    console.log($("#sliderRange").val());
+    console.log($("#myRange").val());
+    console.log($("#myRange3").val());
+    console.log($("#myRange4").val());
+});
+
 //grabbing slider values
 function sliderChange(val) {
     document.getElementById("sliderStatus").innerHTML=val;
