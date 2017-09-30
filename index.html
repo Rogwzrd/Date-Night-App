@@ -2,13 +2,9 @@
 <html lang="en-us">
 
 <head>
-    <meta charset="UTF-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Date Night</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
     <link rel="stylesheet" href="style/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
-
     <body>
         <div class="ui container" id="mainInformationDiv">
             <div class="logo">
@@ -17,34 +13,16 @@
             <div id="search-form">
                 <div>
                     <h4>Dietary Restrictions</h4>
-                    <div class="ui fluid selection dropdown" id="diet">
-                        <input type="hidden" name="cuisine">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Select Your Diet</div>
-                        <div class="menu">
-                            <div class="item" data-value="Atkins">
-                                Atkins
-                            </div>
-                            <div class="item" data-value="Gluten Free">
-                                Gluten Free
-                            </div>
-                            <div class="item" data-value="Paleo">
-                                Paleo
-                            </div>
-                            <div class="item" data-value="Pescetarian">
-                                Pescetarian
-                            </div>
-                            <div class="item" data-value="Vegan">
-                                Vegan
-                            </div>
-                            <div class="item" data-value="Vegetarian">
-                                Vegetarian
-                            </div>
-                            <div class="item" data-value="South Beach">
-                                South Beach
-                            </div>
-                        </div>
-                    </div>
+                    <select class="ui fluid selection dropdown" multiple="" id="diet" name="diet">
+                        <option value="">Select Your Diet</option>
+                        <option value="atkins">Atkins</option>
+                        <option value="gluten-free">Gluten Free</option>
+                        <option value="paleo">Paleo</option>
+                        <option value="pescetarian">Pescetarian</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="south-beach">South Beach</option>
+                    </select>
                 </div>
                 <div>
                     <h4>Cuisine</h4>
@@ -53,27 +31,30 @@
                         <i class="dropdown icon"></i>
                         <div class="default text">Select Cuisine</div>
                         <div class="menu">
-                            <div class="item" data-value="Brazillian">
+                            <div class="item" data-value="brazillian">
                                 Brazillian
                             </div>
-                            <div class="item" data-value="Chinese">
+                            <div class="item" data-value="chinese">
                                 Chinese
                             </div>
-                            <div class="item" data-value="Greek">
+                            <div class="item" data-value="greek">
                                 Greek
                             </div>
-                            <div class="item" data-value="Indian">
-                                Indian </div>
-                            <div class="item" data-value="Italian">
+
+                            <div class="item" data-value="indian">
+                                Indian
+                            </div>
+                            <div class="item" data-value="italian">
+
                                 Italian
                             </div>
-                            <div class="item" data-value="Japanese">
+                            <div class="item" data-value="japanese">
                                 Japanese
                             </div>
-                            <div class="item" data-value="Mexican">
+                            <div class="item" data-value="mexican">
                                 Mexican
                             </div>
-                            <div class="item" data-value="Thai">
+                            <div class="item" data-value="thai">
                                 Thai
                             </div>
                         </div>
@@ -113,14 +94,11 @@
                 <button class="ui blue button" id="submit" type="submit">Submit</button>
             </div>
         </div>
-    </body>
-<<<<<<< HEAD
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="app/app.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="app/app.js"></script>
+    </body>
 </html>
-=======
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="app/app.js"></script>
-</html>
->>>>>>> c6f06e7a195290b74f03f33bfea59d0937213be2
+
+

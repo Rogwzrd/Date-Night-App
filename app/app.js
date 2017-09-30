@@ -1,4 +1,6 @@
- var movies = {
+$(document).ready(function() {
+
+    var movies = {
         action: {
             "0": ["Star Wars: Episode V - The Empire Strikes Back", "Spartacus", "Sicario", "The Lord of the Rings: The Two Towers", "Chicken Run"],
             "1": ["Badlands", "Aguirre, the Wrath of God", "Casino Royale", "Hunt for the Wilderpeople", "The Lego Batman Movie"],
@@ -48,9 +50,9 @@
             "9": ["Get Out", "The Cabinet of Dr. Caligari", "Psycho", "Nosferatu, a Symphony of Horror", "King Kong"]
         }
     };
-    
-    var quisineVal = [],
-        dietaryVal = [],
+
+    var dietaryVal = [],
+        cuisineVal = "",
         includeVal = [],
         excludeVal = [],
         spicyVal = 0,
@@ -94,43 +96,44 @@
         console.log(response);
     })
 
-$(document).ready(function() {
-    $('.ui.dropdown')
-        .dropdown();
+    //dropdown selections
+    $('.ui.dropdown').dropdown();
 
-    $('.ui.range').range({
-        min: 0,
-        max: 10,
-        start: 5,
-        step: 1,
+    $(".ui.dropdown").on("change", function() {
+        dietaryVal = $(".ui.dropdown").val();
+        console.log(dietaryVal);
     });
+
+
+
+    console.log("test");
+
+    //remove search-form
+    $("#submit").click(function(e) {
+        e.preventDefault();
+        console.log("button test")
+        //removes the search etc from main page when button clicked
+        $("#search-form").remove();
+        //adds dummy text for recipe results page 
+        $("#mainInformationDiv").append("<h1>" + "recipe results...");
+        //Creates a new button and appends to the page (for getting recipe)
+        var getRecipeButton = $("<input type='button' value='new button'>");
+        $("#mainInformationDiv").append(getRecipeButton);
+
+    });
+
+    $(document).on("click", "#flavorPage", function(event) {
+        event.preventDefault();
+
+    });
+
+    $(document).on("click", ".recipe", function(a) {
+        event.preventDefault();
+        var recipeNameDiv = $("<h2>").text("recipe name is: ..."),
+            ingredientsDiv = $("<h3>").text("ingredients are: ..."),
+            prepTimeDiv = $("<h3>").text("prep time is: ..."),
+            howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
+    });
+
+
 });
-
-console.log("test");
-
-//remove search-form
-$("#submit").click(function(e) {
-    e.preventDefault();
-    console.log("button test")
-    //removes the search etc from main page when button clicked
-    $("#search-form").remove();
-    //adds dummy text for recipe results page 
-    $("#mainInformationDiv").append("<h1>" + "recipe results...");
-    //Creates a new button and appends to the page (for getting recipe)
-    var getRecipeButton = $("<input type='button' value='new button'>");
-    $("#mainInformationDiv").append(getRecipeButton);
-
-});
-
-$(document).on("click", "#flavorPage", function(event) {
-    event.preventDefault();
-
-} )
-
-$(document).on("click", ".recipe", function(a) {
-    event.preventDefault();
-    var recipeNameDiv = $("<h2>").text("recipe name is: ..."),
-        ingredientsDiv = $("<h3>").text("ingredients are: ..."),
-        prepTimeDiv = $("<h3>").text("prep time is: ..."),
-        howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
-})
