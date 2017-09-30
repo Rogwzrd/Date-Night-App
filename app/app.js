@@ -99,10 +99,20 @@ $(document).ready(function() {
     //dropdown selections
     $('.ui.dropdown').dropdown();
 
-    $(".ui.dropdown").on("change", function() {
-        dietaryVal = $(".ui.dropdown").val();
-        console.log(dietaryVal);
+    // ===========================================================
+    // NEW (Star) - I replaced the previous function with these two functions
+    // The variables for diet and cuisine now change values based on dropdown selections
+    $("#diet").on("change",function () {
+       dietaryVal = $("#diet").val();
+       console.log(dietaryVal);
     });
+
+    $("#cuisine").on("change",function () {
+        cuisineVal = $("#cuisine").val();
+        console.log(cuisineVal);
+    });
+
+    //============================================================
 
 
 

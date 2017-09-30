@@ -26,39 +26,17 @@
                 </div>
                 <div>
                     <h4>Cuisine</h4>
-                    <div class="ui fluid selection dropdown" id="cuisine">
-                        <input type="hidden" name="cuisine">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Select Cuisine</div>
-                        <div class="menu">
-                            <div class="item" data-value="brazillian">
-                                Brazillian
-                            </div>
-                            <div class="item" data-value="chinese">
-                                Chinese
-                            </div>
-                            <div class="item" data-value="greek">
-                                Greek
-                            </div>
-
-                            <div class="item" data-value="indian">
-                                Indian
-                            </div>
-                            <div class="item" data-value="italian">
-
-                                Italian
-                            </div>
-                            <div class="item" data-value="japanese">
-                                Japanese
-                            </div>
-                            <div class="item" data-value="mexican">
-                                Mexican
-                            </div>
-                            <div class="item" data-value="thai">
-                                Thai
-                            </div>
-                        </div>
-                    </div>
+                    <select class="ui fluid selection dropdown" id="cuisine">
+                        <option value="">Select Cuisine</option>
+                        <option class="item" data-value="brazillian">Brazillian</option>
+                        <option class="item" data-value="chinese">Chinese</option>
+                        <option class="item" data-value="greek">Greek</option>
+                        <option class="item" data-value="indian">Indian</option>
+                        <option class="item" data-value="italian">Italian</option>
+                        <option class="item" data-value="japanese">Japanese</option>
+                        <option class="item" data-value="mexican">Mexican</option>
+                        <option class="item" data-value="thai">Thai</option>
+                    </select>
                 </div>
                 <div>
                     <h4>I'm in the mood for:</h4>
@@ -101,6 +79,9 @@
 
                 <button class="ui blue button" id="submit" type="submit">Submit</button>
             </div>
+
+            <div id="results"></div>
+            <div id="recipe"></div>
         </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
