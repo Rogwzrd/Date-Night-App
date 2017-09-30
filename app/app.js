@@ -136,26 +136,4 @@ $(document).ready(function() {
     });
 
 
-
-
-    //grabbing slider values
-
-    function sliderChange(val) {
-        document.getElementById("sliderStatus").innerHTML = val;
-        //document.getElementById("sliderStatus2").innerHTML=val;
-        //document.getElementById("sliderStatus3").innerHTML=val;
-    }
-
-    function sliderChange2(val) {
-        document.getElementById("sliderStatus2").innerHTML = val;
-    }
-
-    function sliderChange3(val) {
-        document.getElementById("sliderStatus3").innerHTML = val;
-    }
-
-    function sliderChange4(val) {
-        document.getElementById("sliderStatus4").innerHTML = val;
-    }
-
 });
