@@ -106,4 +106,21 @@ $(document).ready(function() {
         step: 1,
     });
 
+
+});
+
+console.log("test");
+
+//remove search-form
+$("#submit").click(function (e) {
+    e.preventDefault();
+    console.log("button test")
+    //removes the search etc from main page when button clicked
+    $("#search-form").remove();
+    //adds dummy text for recipe results page 
+    $("#mainInformationDiv").append("<h1>" + "recipe results...");
+    //Creates a new button and appends to the page (for getting recipe)
+    var getRecipeButton = $("<input type='button' value='new button'>");
+    $("#mainInformationDiv").append(getRecipeButton);
+
 });
