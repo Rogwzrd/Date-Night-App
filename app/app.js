@@ -149,7 +149,6 @@ $(document).ready(function() {
 });
 
 
-
  $("#myRange3, #myRange").on('change', function() {
      console.log($("#sliderRange").val());
      console.log($("#myRange").val());
