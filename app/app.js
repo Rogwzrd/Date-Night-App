@@ -168,7 +168,7 @@
         document.getElementById("sliderStatus4").innerHTML = val;
     }
 
-});
+};
 =======
 $(document).ready(function() {
     $('.ui.dropdown')
