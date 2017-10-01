@@ -156,6 +156,8 @@ $(document).ready(function() {
 
 
 
+//================== Chance ===================================
+
 //uses JQuery to grab values of slider when each individual slider moves
  $("#rangeSlider1, #rangeSlider2, #rangeSlider3, #rangeSlider4").on('change', function() {
 
@@ -200,4 +202,4 @@ $(document).ready(function() {
     return $("#rangeSlider4").val();
  }
  
-
+//=========================================================
