@@ -75,6 +75,8 @@ $(document).ready(function() {
         console.log(response);
     });
 
+    //NEW (Star) - getting flavor
+
     //search terms and key for api
     var foodSearch = "pasta";
     var yummlyKey = "af6e286e83053654370aa379046e6c3b";
