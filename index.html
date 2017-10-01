@@ -2,112 +2,85 @@
 <html lang="en-us">
 
 <head>
-    <meta charset="UTF-8">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Date Night</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
     <link rel="stylesheet" href="style/style.css">
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 
     <body>
         <div class="ui container" id="mainInformationDiv">
             <div class="logo">
                 <h1>DateNight</h1>
             </div>
-            <div id="search-form">
-                <div>
-                    <h4>Dietary Restrictions</h4>
-                    <div class="ui fluid selection dropdown" id="diet">
-                        <input type="hidden" name="cuisine">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Select Your Diet</div>
-                        <div class="menu">
-                            <div class="item" data-value="Atkins">
-                                Atkins
-                            </div>
-                            <div class="item" data-value="Gluten Free">
-                                Gluten Free
-                            </div>
-                            <div class="item" data-value="Paleo">
-                                Paleo
-                            </div>
-                            <div class="item" data-value="Pescetarian">
-                                Pescetarian
-                            </div>
-                            <div class="item" data-value="Vegan">
-                                Vegan
-                            </div>
-                            <div class="item" data-value="Vegetarian">
-                                Vegetarian
-                            </div>
-                            <div class="item" data-value="South Beach">
-                                South Beach
-                            </div>
+            <div id="mainPage">
+                <div id="search-form">
+                    <div>
+                        <h4>Dietary Restrictions</h4>
+                        <select class="ui fluid selection dropdown" multiple="" id="diet" name="diet">
+                            <option value="">Select Your Diet</option>
+                            <option value="atkins">Atkins</option>
+                            <option value="gluten-free">Gluten Free</option>
+                            <option value="paleo">Paleo</option>
+                            <option value="pescetarian">Pescetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="south-beach">South Beach</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h4>Cuisine</h4>
+                        <select class="ui fluid selection dropdown" id="cuisine">
+                            <option value="">Select Cuisine</option>
+                            <option class="item" data-value="brazillian">Brazillian</option>
+                            <option class="item" data-value="chinese">Chinese</option>
+                            <option class="item" data-value="greek">Greek</option>
+                            <option class="item" data-value="indian">Indian</option>
+                            <option class="item" data-value="italian">Italian</option>
+                            <option class="item" data-value="japanese">Japanese</option>
+                            <option class="item" data-value="mexican">Mexican</option>
+                            <option class="item" data-value="thai">Thai</option>
+                        </select>
+                    </div>
+                        <h4>I'm in the mood for:</h4>
+                        <div class="ui input" id="search">
+                            <input type="text" placeholder="Search for...">
                         </div>
                     </div>
-                </div>
-                <div>
-                    <h4>Cuisine</h4>
-                    <select class="ui fluid selection dropdown" id="cuisine">
-                        <option value="">Select Cuisine</option>
-                        <option class="item" data-value="brazillian">Brazillian</option>
-                        <option class="item" data-value="chinese">Chinese</option>
-                        <option class="item" data-value="greek">Greek</option>
-                        <option class="item" data-value="indian">Indian</option>
-                        <option class="item" data-value="italian">Italian</option>
-                        <option class="item" data-value="japanese">Japanese</option>
-                        <option class="item" data-value="mexican">Mexican</option>
-                        <option class="item" data-value="thai">Thai</option>
-                    </select>
-                </div>
-                <div>
-                    <h4>I'm in the mood for:</h4>
-                    <div class="ui input" id="search">
-                        <input type="text" placeholder="Search for...">
+                    <div>
+                        <h4>But I don't want:</h4>
+                        <div class="ui input" id="exclude">
+                            <input type="text" placeholder="Exclude...">
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <h4>But I don't want:</h4>
-                    <div class="ui input" id="exclude">
-                        <input type="text" placeholder="Exclude...">
+                    <div>
+                        <h4>Flavor Profile:</h4>
+                        <div class="ui segment">
+                            <div class="ui range"></div>
+                            <div class="ui range" id="salty"></div>
+                            <div class="ui range" id="savory"></div>
+                            <div class="ui range" id="spicy"></div>
+                            <div class="ui range" id="sweet"></div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <h4>Flavor Profile:</h4>
-                    <div class="ui segment">
-                        <div class="ui range"></div>
-                        <div class="ui range" id="salty"></div>
-                        <div class="ui range" id="savory"></div>
-                        <div class="ui range" id="spicy"></div>
-                        <div class="ui range" id="sweet"></div>
+                    <div id="slidecontainer1">
+                        <input type="range" min="0" max="9" value="5" step="1" class="slider" id="sliderRange" onChange="sliderChange(this.value)"> Spicy = <span id="sliderStatus"> 5</span>
                     </div>
+                    <div id="slidecontainer2">
+                        <input type="range" min="0" max="9" value="5" step="1" class="slider" id="myRange" onChange="sliderChange2(this.value)"> Savory = <span id="sliderStatus2"> 5</span>
+                    </div>
+                    <div id="slidecontainer3">
+                        <input type="range" min="0" max="9" value="5" step="1" class="slider" id="myRange3" onChange="sliderChange3(this.value)"> Salty = <span id="sliderStatus3"> 5</span>
+                    </div>
+                    <div id="slidecontainer4">
+                        <input type="range" min="0" max="9" value="5" step="1" class="slider" id="myRange4" onChange="sliderChange4(this.value)"> Sweet = <span id="sliderStatus4"> 5</span>
+                    </div>
+                    <button class="ui blue button" id="submit" type="submit">Submit</button>
                 </div>
-            
-                <div id="slidecontainer1">
-                    <input type="range" min="0" max="9" value="5" step="1"class="slider" id="sliderRange" onChange="sliderChange(this.value)">
-                    Spicy = <span id="sliderStatus"> 5</span>
-                  </div>
-                  <div id="slidecontainer2">
-                    <input type="range" min="0" max="9" value="5" step="1" class="slider" id="myRange" onChange="sliderChange2(this.value)">
-                    Savory = <span id="sliderStatus2"> 5</span>
-                  </div>
-                  <div id="slidecontainer3">
-                    <input type="range" min="0" max="9" value="5" step="1" class="slider" id="myRange3" onChange="sliderChange3(this.value)">
-                    Salty = <span id="sliderStatus3"> 5</span>
-                  </div>
-                  <div id="slidecontainer4">
-                    <input type="range" min="0" max="9" value="5" step="1" class="slider" id="myRange4" onChange="sliderChange4(this.value)">
-                    Sweet = <span id="sliderStatus4"> 5</span>
-                  </div>
-                <button class="ui blue button" id="submit" type="submit">Submit</button>
             </div>
-
             <div id="results"></div>
             <div id="recipe"></div>
         </div>
     </body>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="app/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="app/app.js"></script>
 </html>

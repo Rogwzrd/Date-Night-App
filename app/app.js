@@ -1,4 +1,6 @@
- var movies = {
+$(document).ready(function() {
+
+    var movies = {
         action: {
             "0": ["Star Wars: Episode V - The Empire Strikes Back", "Spartacus", "Sicario", "The Lord of the Rings: The Two Towers", "Chicken Run"],
             "1": ["Badlands", "Aguirre, the Wrath of God", "Casino Royale", "Hunt for the Wilderpeople", "The Lego Batman Movie"],
@@ -24,7 +26,6 @@
             "9": ["Ciizen Kane", "All About Eve", "Metropolis", "The Godfather", "Dunkirk"]
         },
         romance: {
-
             "0": ["West Side Story", "Say Anything...", "The Apartment", "Elevartor to the Gallows", "Groundhog Day"],
             "1": ["The Happiest Day in the Life of Olli Maki", "Only Yesteerday", "Lost in Translation", "The Crying Game"],
             "2": ["Your Name.", "Crouching Tiger, Hidden Dragon", "Wings of Desire", "Sense and Sensibility", "The Handmaiden"],
@@ -36,22 +37,22 @@
             "8": ["The Philadelphia Story", "Vertigo", "Gone with the Wind", "On the Waterfront", "Roman Holiday"],
             "9": ["It Happened One Night", "Singin' in the Rain", "Casablanca", "The Big Sick", "The Adventures of Robin Hood"]
         },
-        thriller: {
-            "0": [],
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": []
+        horror: {
+            "0": ["Dracula", "Zombieland", "It", "Suspiria", "What Ever Happend to Baby Jane"],
+            "1": ["Re-Animator", "A Nightmare on Elm Street", "Train to Busan", "The Host", "Shaun of the Dead"],
+            "2": ["The Loved Ones", "Nosferatu: Phanton der Nacht", "Room 237", "The Love Witch", 'It Comes at Night'],
+            "3": ["The Evil Dead", "Invasion of the Body Snatchers", "Young Frankenstein", "Carrie", "Halloween"],
+            "4": ["The Innocents", "Silence of the Lambs", "Cat People", "A Girl Walks Home Alone at Night", "Drag Me to Hell"],
+            "5": ["The Cabin in the Woods", "Night of the Living Deaad", "Don't Look Now", "The Vanishing", "Under The Shadow"],
+            "6": ["Pan's labyrinth", "Evil Dead 2: Dead by Dawn", "The Birds", "Gojira", "The Witch"],
+            "7": ["It Follows", "Let the Right One In", "Aliens", "Freaks", "Eyes Without a Face"],
+            "8": ["Repulsion", "The Bride of Frankenstein", "The Babadook", "Frankenstein", "Rosemary's Baby"],
+            "9": ["Get Out", "The Cabinet of Dr. Caligari", "Psycho", "Nosferatu, a Symphony of Horror", "King Kong"]
         }
     };
-    
-    var quisineVal = [],
-        dietaryVal = [],
+    //global values used for recipe search
+    var dietaryVal = [],
+        cuisineVal = "",
         includeVal = [],
         excludeVal = [],
         spicyVal = 0,
@@ -95,7 +96,6 @@
         console.log(response);
     })
 
-
     //dropdown selections
     $('.ui.dropdown').dropdown();
 
@@ -121,11 +121,15 @@
     //remove search-form
     $("#submit").click(function(e) {
         e.preventDefault();
+
         console.log("button test")
+
         //removes the search etc from main page when button clicked
         $("#search-form").remove();
+
         //adds dummy text for recipe results page 
         $("#mainInformationDiv").append("<h1>" + "recipe results...");
+        
         //Creates a new button and appends to the page (for getting recipe)
         var getRecipeButton = $("<input type='button' value='new button'>");
         $("#mainInformationDiv").append(getRecipeButton);
@@ -146,6 +150,7 @@
     });
 
 
+<<<<<<< HEAD
 
 
     //grabbing slider values
@@ -181,46 +186,32 @@ $(document).ready(function() {
         step: 1,
     });
 
-});
-
-console.log("test");
-
-//remove search-form
-$("#submit").click(function(e) {
-    e.preventDefault();
-    console.log("button test")
-    //removes the search etc from main page when button clicked
-    $("#search-form").remove();
-    //adds dummy text for recipe results page 
-    $("#mainInformationDiv").append("<h1>" + "recipe results...");
-    //Creates a new button and appends to the page (for getting recipe)
-    var getRecipeButton = $("<input type='button' value='new button'>");
-    $("#mainInformationDiv").append(getRecipeButton);
-
+=======
+>>>>>>> 03de162470e6988e2d7ec9cad98c28cada0ad484
 });
 
 
-$("#myRange3, #myRange").on('change', function(){
-    console.log($("#sliderRange").val());
-    console.log($("#myRange").val());
-    console.log($("#myRange3").val());
-    console.log($("#myRange4").val());
-});
+ $("#myRange3, #myRange").on('change', function() {
+     console.log($("#sliderRange").val());
+     console.log($("#myRange").val());
+     console.log($("#myRange3").val());
+     console.log($("#myRange4").val());
+ });
 
-//grabbing slider values
-function sliderChange(val) {
-    document.getElementById("sliderStatus").innerHTML=val;
-}
-function sliderChange2(val) {
-    document.getElementById("sliderStatus2").innerHTML=val;
-}
-function sliderChange3(val) {
-    document.getElementById("sliderStatus3").innerHTML=val;
-}
-function sliderChange4(val) {
-    document.getElementById("sliderStatus4").innerHTML=val;
-}
+ //grabbing slider values
+ function sliderChange(val) {
+     document.getElementById("sliderStatus").innerHTML = val;
+ }
 
+ function sliderChange2(val) {
+     document.getElementById("sliderStatus2").innerHTML = val;
+ }
 
-console.log();
+ function sliderChange3(val) {
+     document.getElementById("sliderStatus3").innerHTML = val;
+ }
 
+ function sliderChange4(val) {
+     document.getElementById("sliderStatus4").innerHTML = val;
+ }
+ console.log();
