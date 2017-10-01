@@ -221,35 +221,62 @@ $(document).ready(function() {
         var getRecipeButton = $("<input type='button' value='new button'>");
         $("#mainInformationDiv").append(getRecipeButton);
 
+
         yummlyCall;
 
+
+    
     });
 
 
 });
 
 
-$("#myRange3, #myRange").on('change', function() {
-    console.log($("#sliderRange").val());
-    console.log($("#myRange").val());
-    console.log($("#myRange3").val());
-    console.log($("#myRange4").val());
-});
+//================== Chance ===================================
 
-//grabbing slider values
-function sliderChange(val) {
-    document.getElementById("sliderStatus").innerHTML = val;
-}
+//uses JQuery to grab values of slider when each individual slider moves
+ $("#rangeSlider1, #rangeSlider2, #rangeSlider3, #rangeSlider4").on('change', function() {
 
-function sliderChange2(val) {
-    document.getElementById("sliderStatus2").innerHTML = val;
-}
+     console.log($("#rangeSlider1").val());
+     console.log($("#rangeSlider2").val());
+     console.log($("#rangeSlider3").val());
+     console.log($("#rangeSlider4").val());
+ });
 
-function sliderChange3(val) {
-    document.getElementById("sliderStatus3").innerHTML = val;
-}
+ //functions that grab slider values and changes value on page
+ function captureSliderChange1(val) {
+     document.getElementById("slider1HTMLUpdate").innerHTML = val;
+ }
 
-function sliderChange4(val) {
-    document.getElementById("sliderStatus4").innerHTML = val;
-}
-console.log();
+ function captureSliderChange2(val) {
+     document.getElementById("slider2HTMLUpdate").innerHTML = val;
+ }
+
+ function captureSliderChange3(val) {
+     document.getElementById("slider3HTMLUpdate").innerHTML = val;
+ }
+
+ function captureSliderChange4(val) {
+     document.getElementById("slider4HTMLUpdate").innerHTML = val;
+ }
+ 
+ //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
+ //left down here to be used later
+ var userRangeSliderValue1 = function() {
+    return $("#rangeSlider1").val();
+ }
+ 
+ var userRangeSliderValue2 = function() {
+    return $("#rangeSlider2").val();
+ }
+
+ var userRangeSliderValue3 = function() {
+    return $("#rangeSlider3").val();
+ }
+
+ var userRangeSliderValue4 = function() {
+    return $("#rangeSlider4").val();
+ }
+ 
+//=========================================================
+
