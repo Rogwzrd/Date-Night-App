@@ -158,6 +158,7 @@ $(document).ready(function() {
 
 //uses JQuery to grab values of slider when each individual slider moves
  $("#rangeSlider1, #rangeSlider2, #rangeSlider3, #rangeSlider4").on('change', function() {
+
      console.log($("#rangeSlider1").val());
      console.log($("#rangeSlider2").val());
      console.log($("#rangeSlider3").val());
