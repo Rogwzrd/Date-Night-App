@@ -165,28 +165,28 @@ $(document).ready(function() {
  });
 
  //grabbing slider values
- function sliderChange(val) {
+ function captureSliderChange1(val) {
      document.getElementById("sliderStatus").innerHTML = val;
  }
 
- function sliderChange2(val) {
+ function captureSliderChange2(val) {
      document.getElementById("sliderStatus2").innerHTML = val;
  }
 
- function sliderChange3(val) {
+ function captureSliderChange3(val) {
      document.getElementById("sliderStatus3").innerHTML = val;
  }
 
- function sliderChange4(val) {
+ function captureSliderChange4(val) {
      document.getElementById("sliderStatus4").innerHTML = val;
  }
  
- //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
+ //Returns the value of the variable call w/ immediate invoked function expression like a regular function Ex: userRangeSliderValue1();
  //left down here to be used later
  var userRangeSliderValue1 = function() {
     return $("#rangeSlider1").val();
  }
- 
+
  var userRangeSliderValue2 = function() {
     return $("#rangeSlider2").val();
  }
