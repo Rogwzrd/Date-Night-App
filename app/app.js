@@ -165,28 +165,28 @@ $(document).ready(function() {
  });
 
  //grabbing slider values
- function captureSliderValue1(val) {
+ function captureSliderChange1(val) {
      document.getElementById("sliderStatus").innerHTML = val;
  }
 
- function captureSliderValue2(val) {
+ function captureSliderChange2(val) {
      document.getElementById("sliderStatus2").innerHTML = val;
  }
 
- function captureSliderValue3(val) {
+ function captureSliderChange3(val) {
      document.getElementById("sliderStatus3").innerHTML = val;
  }
 
- function captureSliderValue4(val) {
+ function captureSliderChange4(val) {
      document.getElementById("sliderStatus4").innerHTML = val;
  }
  
- //Returns the value of the variable call w/ immediate invoked function expression like a regular function Ex: userRangeSliderValue1();
- //left down here to be used later.  Put inside of on click function for submit?
+ //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
+ //left down here to be used later
  var userRangeSliderValue1 = function() {
     return $("#rangeSlider1").val();
  }
-
+ 
  var userRangeSliderValue2 = function() {
     return $("#rangeSlider2").val();
  }
