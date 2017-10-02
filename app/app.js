@@ -61,6 +61,8 @@ $(document).ready(function() {
         sweetVal = 0;
 
     //search terms and key for api
+
+    //this current code is showing the functionality of the movies data structure
     var movieSearch = movies.action["9"][Math.floor(Math.random() * 4)];
     var omdbKey = "40e9cece"
     //omdb query url
@@ -98,8 +100,12 @@ $(document).ready(function() {
     //New (Mike)-
     //==============================================================
     function hideMainPage() {
-        $("#main").hide();
+        $("#mainPage").hide();
     };
+
+    function showMainPage() {
+        $("#mainPage").show();
+    }
     //test array for use with api query functions
     var testIngredientArray = ["cheese", "ham", "bread"]
 
@@ -154,8 +160,56 @@ $(document).ready(function() {
         }
     }
 
+
     //execute function
     createDietQuery(["atkins", "pescaterian", "south-beach"])
+
+    //function for creating the flavor profile api query
+    function createFlavorQuery(spicy, sweet, savory, salty) {
+        if (spicy == 9) {
+            var convertedSpicy = "&flavor.piquant.min=0." + (spicy - 1) + "&flavor.piquant.max=1";
+            console.log(convertedSpicy);
+        } else if (spicy < 9 && spicy > 2) {
+            var convertedSpicy = "&flavor.piquant.min=0." + (spicy - 2) + "&flavor.piquant.max=0." + spicy;
+            console.log(convertedSpicy);
+        } else {
+            var convertedSpicy = "&flavor.piquant.min=0.0&flavor.piquant.max=0." + spicy;
+            console.log(convertedSpicy);
+        };
+        if (sweet == 9) {
+            var convertedSweet = "&flavor.piquant.min=0." + (sweet - 1) + "&flavor.piquant.max=1";
+            console.log(convertedSweet);
+        } else if (sweet < 9 && sweet > 2) {
+            var convertedSweet = "&flavor.piquant.min=0." + (sweet - 2) + "&flavor.piquant.max=0." + sweet;
+            console.log(convertedSweet);
+        } else {
+            var convertedSweet = "&flavor.piquant.min=0.0&flavor.piquant.max=0." + sweet;
+            console.log(convertedSweet);
+        };
+        if (savory == 9) {
+            var convertedSavory = "&flavor.piquant.min=0." + (savory - 1) + "&flavor.piquant.max=1";
+            console.log(convertedSavory);
+        } else if (savory < 9 && savory > 2) {
+            var convertedSavory = "&flavor.piquant.min=0." + (savory - 2) + "&flavor.piquant.max=0." + savory;
+            console.log(convertedSavory);
+        } else {
+            var convertedSavory = "&flavor.piquant.min=0.0&flavor.piquant.max=0." + savory;
+            console.log(convertedSavory);
+        };
+        if (salty == 9) {
+            var convertedSalty = "&flavor.piquant.min=0." + (salty - 1) + "&flavor.piquant.max=1";
+            console.log(convertedSalty);
+        } else if (salty < 9 && salty > 2) {
+            var convertedsalty = "&flavor.piquant.min=0." + (salty - 2) + "&flavor.piquant.max=0." + salty;
+            console.log(convertedSalty);
+        } else {
+            var convertedSalty = "&flavor.piquant.min=0.0&flavor.piquant.max=0." + salty;
+            console.log(convertedSalty);
+        };
+    }
+
+    //test function
+    createFlavorQuery(2, 4, 9, 8);
 
 
     //rough code to show results of api code for recipe results
@@ -215,7 +269,7 @@ $(document).ready(function() {
         console.log("button test")
 
         //removes the search etc from main page when button clicked
-        $("#search-form").remove();
+        // $("#search-form").remove();
 
         //adds dummy text for recipe results page 
         $("#mainInformationDiv").append("<h1>" + "recipe results...");
@@ -225,10 +279,11 @@ $(document).ready(function() {
         $("#mainInformationDiv").append(getRecipeButton);
 
 
+        hideMainPage();
         yummlyCall;
 
 
-    
+
     });
 
 
@@ -238,48 +293,47 @@ $(document).ready(function() {
 //================== Chance ===================================
 
 //uses JQuery to grab values of slider when each individual slider moves
- $("#rangeSlider1, #rangeSlider2, #rangeSlider3, #rangeSlider4").on('change', function() {
+$("#rangeSlider1, #rangeSlider2, #rangeSlider3, #rangeSlider4").on('change', function() {
 
-     console.log($("#rangeSlider1").val());
-     console.log($("#rangeSlider2").val());
-     console.log($("#rangeSlider3").val());
-     console.log($("#rangeSlider4").val());
- });
+    console.log($("#rangeSlider1").val());
+    console.log($("#rangeSlider2").val());
+    console.log($("#rangeSlider3").val());
+    console.log($("#rangeSlider4").val());
+});
 
- //functions that grab slider values and changes value on page
- function captureSliderChange1(val) {
-     document.getElementById("slider1HTMLUpdate").innerHTML = val;
- }
+//functions that grab slider values and changes value on page
+function captureSliderChange1(val) {
+    document.getElementById("slider1HTMLUpdate").innerHTML = val;
+}
 
- function captureSliderChange2(val) {
-     document.getElementById("slider2HTMLUpdate").innerHTML = val;
- }
+function captureSliderChange2(val) {
+    document.getElementById("slider2HTMLUpdate").innerHTML = val;
+}
 
- function captureSliderChange3(val) {
-     document.getElementById("slider3HTMLUpdate").innerHTML = val;
- }
+function captureSliderChange3(val) {
+    document.getElementById("slider3HTMLUpdate").innerHTML = val;
+}
 
- function captureSliderChange4(val) {
-     document.getElementById("slider4HTMLUpdate").innerHTML = val;
- }
- 
- //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
- //left down here to be used later
- var userRangeSliderValue1 = function() {
+function captureSliderChange4(val) {
+    document.getElementById("slider4HTMLUpdate").innerHTML = val;
+}
+
+//Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
+//left down here to be used later
+var userRangeSliderValue1 = function() {
     return $("#rangeSlider1").val();
- }
- 
- var userRangeSliderValue2 = function() {
+}
+
+var userRangeSliderValue2 = function() {
     return $("#rangeSlider2").val();
- }
+}
 
- var userRangeSliderValue3 = function() {
+var userRangeSliderValue3 = function() {
     return $("#rangeSlider3").val();
- }
+}
 
- var userRangeSliderValue4 = function() {
+var userRangeSliderValue4 = function() {
     return $("#rangeSlider4").val();
- }
- 
-//=========================================================
+}
 
+//=========================================================
