@@ -60,15 +60,14 @@ $(document).ready(function() {
         saltyVal = 0,
         sweetVal = 0;
 
-
     //search terms and key for api
-    var movieSearch = "dune";
+    var movieSearch = movies.action["9"][Math.floor(Math.random() * 4)];
     var omdbKey = "40e9cece"
     //omdb query url
     var omdbQueryURL = "http://www.omdbapi.com/?t=" + movieSearch + "&apikey=" + omdbKey;
 
     //omdb api call
-    $.ajax({
+    var omdbCall = $.ajax({
         url: omdbQueryURL,
         method: "GET"
     }).done(function(response) {
@@ -89,12 +88,106 @@ $(document).ready(function() {
     var yummlyQueryURL = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=" + yummlyKey + "&q=" + foodSearch + "&requirePicture=true";
 
     //yummly api call
-    $.ajax({
+    var yummlyCall = $.ajax({
         url: yummlyQueryURL,
         method: "GET"
     }).done(function(response) {
         console.log(response);
-    })
+    });
+
+    //New (Mike)-
+    //==============================================================
+    function hideMainPage() {
+        $("#main").hide();
+    };
+    //test array for use with api query functions
+    var testIngredientArray = ["cheese", "ham", "bread"]
+
+    //this funciton concatenates the ingredients api query
+    function createIngredientsQuery(array) {
+        for (var i = 0; i < array.length; i++) {
+            var convertedIngredients = "&q=" + array[i];
+            includeVal.push(convertedIngredients)
+        };
+        console.log(includeVal)
+
+    };
+
+    //execute funciton
+    createIngredientsQuery(testIngredientArray);
+
+    //this funciton concatenates the excluded api query
+    function createExcludedQuery(array) {
+        for (var i = 0; i < array.length; i++) {
+            var convertedExcluded = "&excludedIngredient[]=" + array[i];
+            excludeVal.push(convertedExcluded)
+        };
+        console.log(excludeVal)
+
+    };
+
+    //execute funciton
+    createExcludedQuery(testIngredientArray);
+
+    //this function concatenates the diet api query
+    function createDietQuery(array) {
+        if (array.indexOf("atkins") !== -1) {
+            console.log("atkins diet added")
+        };
+        if (array.indexOf("gluten-free") !== -1) {
+            console.log("gluten-free diet added")
+        }
+        if (array.indexOf("paleo") !== -1) {
+            console.log("paleo diet added")
+        }
+        if (array.indexOf("pescaterian") !== -1) {
+            console.log("pescaterian diet added")
+        }
+        if (array.indexOf("vegan") !== -1) {
+            console.log("vegan diet added")
+        }
+        if (array.indexOf("vegetarian") !== -1) {
+            console.log("vegetarian diet added")
+        }
+        if (array.indexOf("south-beach") !== -1) {
+            console.log("south-beach diet added")
+        }
+    }
+
+    //execute function
+    createDietQuery(["atkins", "pescaterian", "south-beach"])
+
+
+    //rough code to show results of api code for recipe results
+    // not working, in need of changes
+    function showRecipe() {
+
+        //run the api when you hit the submit button
+        console.log(yummlyCall)
+
+        //for loop that itterates through the 10 matches from the api call
+        for (var i = 0; i < yummlyCall.responseJSON.matches.length; i++) {
+            yummlyCall.responseJSON.matches[i]
+        }
+        var recipeConatiner = $("<div>").attr("");
+
+        var recipeNameDiv = $("<h2>").text("recipe name is:..."),
+            ingredientsDiv = $("<h3>").text("ingredients are: ..."),
+            prepTimeDiv = $("<h3>").text("prep time is: ..."),
+            howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
+
+        recipeConatiner
+            .append(recipeNameDiv)
+            .append(ingredientsDiv)
+            .append(prepTimeDiv)
+            .append(howToMakeButton);
+
+        $("#results").append(recipeConatiner);
+
+    };
+
+
+    //==============================================================
 
     //dropdown selections
     $('.ui.dropdown').dropdown();
@@ -102,12 +195,12 @@ $(document).ready(function() {
     // ===========================================================
     // NEW (Star) - I replaced the previous function with these two functions
     // The variables for diet and cuisine now change values based on dropdown selections
-    $("#diet").on("change",function () {
-       dietaryVal = $("#diet").val();
-       console.log(dietaryVal);
+    $("#diet").on("change", function() {
+        dietaryVal = $("#diet").val();
+        console.log(dietaryVal);
     });
 
-    $("#cuisine").on("change",function () {
+    $("#cuisine").on("change", function() {
         cuisineVal = $("#cuisine").val();
         console.log(cuisineVal);
     });
@@ -115,10 +208,7 @@ $(document).ready(function() {
     //============================================================
 
 
-
-    console.log("test");
-
-    //remove search-form
+    //This function runs when you press the submit button on the main page
     $("#submit").click(function(e) {
         e.preventDefault();
 
@@ -129,31 +219,20 @@ $(document).ready(function() {
 
         //adds dummy text for recipe results page 
         $("#mainInformationDiv").append("<h1>" + "recipe results...");
-        
+
         //Creates a new button and appends to the page (for getting recipe)
         var getRecipeButton = $("<input type='button' value='new button'>");
         $("#mainInformationDiv").append(getRecipeButton);
 
 
+        yummlyCall;
+
+
     
-    });
-
-    $(document).on("click", "#flavorPage", function(event) {
-        event.preventDefault();
-
-    });
-
-    $(document).on("click", ".recipe", function(a) {
-        event.preventDefault();
-        var recipeNameDiv = $("<h2>").text("recipe name is: ..."),
-            ingredientsDiv = $("<h3>").text("ingredients are: ..."),
-            prepTimeDiv = $("<h3>").text("prep time is: ..."),
-            howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
     });
 
 
 });
-
 
 
 //================== Chance ===================================
@@ -203,3 +282,4 @@ $(document).ready(function() {
  }
  
 //=========================================================
+
