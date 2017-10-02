@@ -4,6 +4,19 @@ body {
     
 }
 
+h1 {
+    text-align: center;
+    font-size: xx-large;
+
+}
+
+
+h4 {
+    margin: 10px 0 2px 0;
+}
+
+
+
 .logoDiv {
     padding: 10px;
     margin: auto;
@@ -25,6 +38,10 @@ hr {
     
 }
 
+.dropdown, .input, .segment {
+    margin: 0 0 10px 0;
+}
+
 
 
 
@@ -39,24 +56,43 @@ hr {
 
 }
 .slider:hover {
-    opacity: .6;
+    opacity: .8;
+} 
+
+/* webkit-browser slider styling */
+input[type=range]{
+    -webkit-appearance: none;
 }
 
-
-
-h1 {
-    text-align: center;
-    font-size: xx-large;
-
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: rgba(0, 162, 255, 0.96);
+    border: none;
+    border-radius: 3px;
 }
 
-
-h4 {
-    margin: 10px 0 2px 0;
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+    margin-top: -4px;
 }
 
-.dropdown, .input, .segment {
-    margin: 0 0 10px 0;
+input[type=range]:focus {
+    outline: none;
+} 
+
+/*input[type=range]:focus::-webkit-slider-runnable-track {
+    background: white;
+} */
+/* class that only affects the slider number (not words) */
+.flavorNumberDisplay {
+    font-size: 30px;
+    color: rgb(255, 0, 0);
 }
 
 #submit {
@@ -64,4 +100,5 @@ h4 {
     background-color: rgba(0, 162, 255, 0.96);
 
 }
+
 
