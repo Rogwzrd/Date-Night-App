@@ -136,10 +136,12 @@ $(document).ready(function() {
     });
 
 
+
     //========Star===========================================================
     // Function for compiling search criteria and running recipe search
+    //========NOT WORKING=============
     function searchRecipes() {
-        var includeVal = $("#search").val("");
+        var includeVal = $("#search").val();
         console.log(includeVal);
 
         allowedIngredients.push($("#search").val());
@@ -149,7 +151,22 @@ $(document).ready(function() {
         console.log(excludeVal);
     }
 
+    // ==================Star=========================================
+    // Flavor variables change based on respective slider value
+    $(".slider").on("change",function () {
+        spicyVal = $("#rangeSlider1").val();
+        savoryVal = $("#rangeSlider2").val();
+        saltyVal = $("#rangeSlider3").val();
+        sweetVal = $("#rangeSlider4").val();
+    });
 
+    // Here's some pseudocode to get the ball rolling on how to
+    // apply the value of a slider to the movie search api. It needs a lot of work.
+    // movieSearch = movies.===whichever slider was used===.====index to match slider value
+    // === then use math.random(math.floor) to determine which item in that array will be searched.
+
+
+    //==================================================================
 
     $(document).on("click", "#flavorPage", function(event) {
         event.preventDefault();
@@ -216,3 +233,4 @@ $(document).ready(function() {
  }
  
 //=========================================================
+
