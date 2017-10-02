@@ -157,6 +157,9 @@ $(document).ready(function() {
     //execute function
     createDietQuery(["atkins", "pescaterian", "south-beach"])
 
+
+    //rough code to show results of api code for recipe results
+    // not working, in need of changes
     function showRecipe() {
 
         //run the api when you hit the submit button
