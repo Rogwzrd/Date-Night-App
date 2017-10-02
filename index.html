@@ -41,25 +41,19 @@
                         </select>
                     </div>
                         <h4>I'm in the mood for:</h4>
-                        <div class="ui input" id="search">
-                            <input type="text" placeholder="Search for...">
+                        <div class="ui input">
+                            <input type="text" id="search" placeholder="Search for...">
                         </div>
-                    </div>
+
                     <div>
                         <h4>But I don't want:</h4>
-                        <div class="ui input" id="exclude">
-                            <input type="text" placeholder="Exclude...">
+                        <div class="ui input">
+                            <input type="text" id="exclude" placeholder="Exclude...">
                         </div>
                     </div>
                     <div>
                         <h4>Flavor Profile:</h4>
-                        <div class="ui segment">
-                            <div class="ui range"></div>
-                            <div class="ui range" id="salty"></div>
-                            <div class="ui range" id="savory"></div>
-                            <div class="ui range" id="spicy"></div>
-                            <div class="ui range" id="sweet"></div>
-                        </div>
+        <!--(Star) Removed my old slider code that was replaced by Chance's.-->
                     </div>
                     <div id="slidecontainer1">
                         <input type="range" min="0" max="9" value="0" step="1" class="slider" id="rangeSlider1" onChange="captureSliderChange1(this.value)"> Spicy = <span id="slider1HTMLUpdate"> 0</span>

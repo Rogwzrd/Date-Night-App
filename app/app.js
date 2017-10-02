@@ -53,7 +53,7 @@ $(document).ready(function() {
     //global values used for recipe search
     var dietaryVal = [],
         cuisineVal = "",
-        includeVal = [],
+        includeVal,
         excludeVal = [],
         spicyVal = 0,
         savoryVal = 0,
@@ -75,12 +75,10 @@ $(document).ready(function() {
         console.log(response);
     });
 
-    //NEW (Star) - getting flavor
-
     //search terms and key for api
     var foodSearch = "pasta";
     var yummlyKey = "af6e286e83053654370aa379046e6c3b";
-    var allwedIngredients = [];
+    var allowedIngredients = [];
     var excludedIngredients = [];
     var allowedAllergery = [];
     var allowedDiet = [];
@@ -102,7 +100,7 @@ $(document).ready(function() {
     $('.ui.dropdown').dropdown();
 
     // ===========================================================
-    // NEW (Star) - I replaced the previous function with these two functions
+    // (Star) - I replaced the previous function with these two functions
     // The variables for diet and cuisine now change values based on dropdown selections
     $("#diet").on("change",function () {
        dietaryVal = $("#diet").val();
@@ -113,9 +111,6 @@ $(document).ready(function() {
         cuisineVal = $("#cuisine").val();
         console.log(cuisineVal);
     });
-
-    //============================================================
-
 
 
     console.log("test");
@@ -136,9 +131,25 @@ $(document).ready(function() {
         var getRecipeButton = $("<input type='button' value='new button'>");
         $("#mainInformationDiv").append(getRecipeButton);
 
+        searchRecipes()
 
-    
     });
+
+
+    //========Star===========================================================
+    // Function for compiling search criteria and running recipe search
+    function searchRecipes() {
+        var includeVal = $("#search").val("");
+        console.log(includeVal);
+
+        allowedIngredients.push($("#search").val());
+        console.log(allowedIngredients);
+
+        var excludeVal = $("#exclude").val();
+        console.log(excludeVal);
+    }
+
+
 
     $(document).on("click", "#flavorPage", function(event) {
         event.preventDefault();
