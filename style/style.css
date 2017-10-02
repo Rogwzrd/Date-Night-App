@@ -17,14 +17,12 @@ h4 {
 }
 
 
-
+/* div devoted to logo section */
 .logoDiv {
     padding: 10px;
-    margin: auto;
-    /*background-color: #31A9B8;*/
-    
-}
-
+    margin: auto;  
+} 
+/*Date Night logo that styling */
 #logoText {
     font-family: "Amatic SC";
     font-size: 70px;
@@ -43,9 +41,7 @@ hr {
     margin: 0 0 10px 0;
 }
 
-
-
-
+/* css direct slider updates--webkit has own influence as well */
 .slider {
     width: 60%;
     height: 30px;
@@ -55,7 +51,6 @@ hr {
     cursor: pointer;
     background-color:rgba(111, 240, 60, 0.06);
 }
-
 .slider:hover {
     opacity: .8;
 } 
@@ -64,7 +59,7 @@ hr {
 input[type=range]{
     -webkit-appearance: none;
 }
-
+/*slider track styling */
 input[type=range]::-webkit-slider-runnable-track {
     width: 300px;
     height: 5px;
@@ -72,7 +67,7 @@ input[type=range]::-webkit-slider-runnable-track {
     border: none;
     border-radius: 3px;
 }
-
+/* slider thumbnail, gets away from default styling */
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: none;
@@ -87,15 +82,13 @@ input[type=range]:focus {
     outline: none;
 } 
 
-/*input[type=range]:focus::-webkit-slider-runnable-track {
-    background: white;
-} */
 /* class that only affects the slider number (not words) */
 .flavorNumberDisplay {
     font-size: 30px;
     color: rgb(255, 0, 0);
 }
 
+/*submit button on page */
 #submit {
     margin-top: 10px;
     background-color: rgba(0, 162, 255, 0.96);
