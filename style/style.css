@@ -1,6 +1,7 @@
 
-* body {
-    background-color: rgba(55, 245, 7, 0.35);
+body {
+    background-color: rgba(111, 240, 60, 0.36);
+    
 }
 
 .logoDiv {
@@ -13,15 +14,19 @@
 #logoText {
     font-family: "Amatic SC";
     font-size: 70px;
-    color: rgb(51, 51, 51);
+    color: rgba(0, 162, 255, 0.96);
     margin-bottom: 0px;
 }
+
 hr {
     display: block;
-    height: 1px;
-    background-color: rgb(51, 51, 51);
-
+    height: 3px;
+    background-color: rgba(0, 162, 255, 0.96);
+    
 }
+
+
+
 
 .slider {
     width: 60%;
@@ -30,10 +35,13 @@ hr {
     margin-left: 20%;
     /* changed cursor to a small hand aka "pointer" */
     cursor: pointer;
+    
+
 }
 .slider:hover {
-    opacity: .5;
+    opacity: .6;
 }
+
 
 
 h1 {
@@ -53,5 +61,7 @@ h4 {
 
 #submit {
     margin-top: 10px;
+    background-color: rgba(0, 162, 255, 0.96);
+
 }
 
