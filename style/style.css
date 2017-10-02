@@ -1,7 +1,19 @@
 
-.logo {
+* body {
+    background-color: rgba(55, 245, 7, 0.35);
+}
+
+.logoDiv {
     padding: 10px;
     margin: auto;
+    /*background-color: #31A9B8;*/
+    
+}
+
+#logoText {
+    font-family: "Amatic SC";
+    font-size: 70px;
+    color: rgb(51, 51, 51);
 }
 
 .slider {
@@ -20,6 +32,7 @@
 h1 {
     text-align: center;
     font-size: xx-large;
+
 }
 
 
