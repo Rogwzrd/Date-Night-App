@@ -94,6 +94,14 @@ $(document).ready(function() {
         method: "GET"
     }).done(function(response) {
         console.log(response);
+        // (Brelon) display recipe in the console
+        console.log(response.matches[0].recipeName);
+        // (Brelon) display ingredients in the console
+        console.log(response.matches[0].ingredients);
+        // (Brelon) Created a div to hold the recipes
+        var recipeDiv = $("<div>");
+        // (Brelon) Created a div to hold the ingredients
+        var ingDiv = $("<div>");
     })
 
     //dropdown selections
@@ -150,7 +158,7 @@ $(document).ready(function() {
     });
 
 
-<<<<<<< HEAD
+
 
 
     //grabbing slider values
@@ -173,8 +181,8 @@ $(document).ready(function() {
         document.getElementById("sliderStatus4").innerHTML = val;
     }
 
-};
-=======
+});
+
 $(document).ready(function() {
     $('.ui.dropdown')
         .dropdown();
@@ -186,8 +194,7 @@ $(document).ready(function() {
         step: 1,
     });
 
-=======
->>>>>>> 03de162470e6988e2d7ec9cad98c28cada0ad484
+
 });
 
 
