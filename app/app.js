@@ -77,7 +77,7 @@ $(document).ready(function() {
     });
 
     //search terms and key for api
-    var foodSearch = "pasta";
+    var foodSearch = "curry";
     var yummlyKey = "af6e286e83053654370aa379046e6c3b";
     var allwedIngredients = [];
     var excludedIngredients = [];
@@ -99,6 +99,8 @@ $(document).ready(function() {
 
     //New (Mike)-
     //==============================================================
+    //object to compile the search query for the api
+
     function hideMainPage() {
         $("#mainPage").hide();
     };
@@ -129,34 +131,42 @@ $(document).ready(function() {
             excludeVal.push(convertedExcluded)
         };
         console.log(excludeVal)
-
+        return excludeVal
     };
 
     //execute funciton
     createExcludedQuery(testIngredientArray);
 
     //this function concatenates the diet api query
+    //this function needs additional concatenation code
     function createDietQuery(array) {
         if (array.indexOf("atkins") !== -1) {
             console.log("atkins diet added")
+            return "atkins"
         };
         if (array.indexOf("gluten-free") !== -1) {
             console.log("gluten-free diet added")
+            return "gluten-free"
         }
         if (array.indexOf("paleo") !== -1) {
             console.log("paleo diet added")
+            return "paleo"
         }
         if (array.indexOf("pescaterian") !== -1) {
             console.log("pescaterian diet added")
+            return "pescaterian"
         }
         if (array.indexOf("vegan") !== -1) {
             console.log("vegan diet added")
+            return "vegan"
         }
         if (array.indexOf("vegetarian") !== -1) {
             console.log("vegetarian diet added")
+            return "vegetarian"
         }
         if (array.indexOf("south-beach") !== -1) {
             console.log("south-beach diet added")
+            return "south-beach"
         }
     }
 
@@ -200,7 +210,7 @@ $(document).ready(function() {
             var convertedSalty = "&flavor.piquant.min=0." + (salty - 1) + "&flavor.piquant.max=1";
             console.log(convertedSalty);
         } else if (salty < 9 && salty > 2) {
-            var convertedsalty = "&flavor.piquant.min=0." + (salty - 2) + "&flavor.piquant.max=0." + salty;
+            var convertedSalty = "&flavor.piquant.min=0." + (salty - 2) + "&flavor.piquant.max=0." + salty;
             console.log(convertedSalty);
         } else {
             var convertedSalty = "&flavor.piquant.min=0.0&flavor.piquant.max=0." + salty;
@@ -245,6 +255,20 @@ $(document).ready(function() {
     //test function
     movieFlavorGenerator(8, 3, 6, 0);
 
+    //this function ties all of the query fuctions together to make one master api search
+    function makeRecipeQuery(include,exclude,diet,cuisine,spicy,salty,savory, sweet){
+        var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b&requirePicture=true";
+        function concatRecipeValues(){
+            debugger;
+            var conCattedUrp = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createDietQuery(diet) + createFlavorQuery(spicy, sweet, savory, salty);
+            console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createDietQuery(diet) + createFlavorQuery(spicy, sweet, savory, salty))
+        }
+        concatRecipeValues();
+    }
+
+    //test run
+    makeRecipeQuery(["ham", "pickles"], ["cheese", "bread"], ["paleo"], ["american"],4,6,7,1);
+
     //rough code to show results of api code for recipe results
     // not working, in need of changes
     function showRecipe() {
@@ -254,9 +278,9 @@ $(document).ready(function() {
 
         //for loop that itterates through the 10 matches from the api call
         for (var i = 0; i < yummlyCall.responseJSON.matches.length; i++) {
-            yummlyCall.responseJSON.matches[i]
+            console.log(yummlyCall.responseJSON.matches[i])
         }
-        var recipeConatiner = $("<div>").attr("");
+        var recipeConatiner = $("<div>").attr("id", "reicpe");
 
         var recipeNameDiv = $("<h2>").text("recipe name is:..."),
             ingredientsDiv = $("<h3>").text("ingredients are: ..."),
@@ -311,9 +335,9 @@ $(document).ready(function() {
         var getRecipeButton = $("<input type='button' value='new button'>");
         $("#mainInformationDiv").append(getRecipeButton);
 
-
+        makeRecipeQuery(["ham", "pickles"], ["cheese", "bread"], ["paleo"], ["american"],4,6,7,1);
         hideMainPage();
-
+        showRecipe();
         yummlyCall;
     });
 });
