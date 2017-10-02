@@ -211,6 +211,39 @@ $(document).ready(function() {
     //test function
     createFlavorQuery(2, 4, 9, 8);
 
+    //this function will determine the movie to searched in the api from the movie data structure
+    //not currently working
+    function movieFlavorGenerator(spicy, sweet, savory, salty) {
+        var convertedMovieSearch = null;
+
+        //if spicy is the dominant flavor
+        if (spicy > sweet && spicy > savory && spicy > salty) {
+            var num = spicy
+            convertedMovieSearch = movies.action[num.toString()][Math.floor(Math.random() * 4)];
+            console.log(convertedMovieSearch);
+
+        //if sweet is the dominant flavor
+        } else if (sweet > spicy && sweet > savory && sweet > salty) {
+            var num = sweet
+            convertedMovieSearch = movies.drama[num.toString()][Math.floor(Math.random() * 4)];
+            console.log(convertedMovieSearch);
+
+        //if savory is the dominant flavor
+        } else if (savory > sweet && savory > savory && spicy > salty) {
+            var num = savory
+            convertedMovieSearch = movies.romance[num.toString()][Math.floor(Math.random() * 4)];
+            console.log(convertedMovieSearch);
+
+        //if salty is the dominant flavor
+        } else if (salty > sweet && salty > savory && salty > spicy) {
+            var num = salty
+            convertedMovieSearch = movies.horror[num.toString()][Math.floor(Math.random() * 4)];
+            console.log(convertedMovieSearch);
+        };
+    }
+
+    //test function
+    movieFlavorGenerator(8, 3, 6, 0);
 
     //rough code to show results of api code for recipe results
     // not working, in need of changes
@@ -280,13 +313,9 @@ $(document).ready(function() {
 
 
         hideMainPage();
+
         yummlyCall;
-
-
-
     });
-
-
 });
 
 
