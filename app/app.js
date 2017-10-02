@@ -50,7 +50,7 @@ $(document).ready(function() {
             "9": ["Get Out", "The Cabinet of Dr. Caligari", "Psycho", "Nosferatu, a Symphony of Horror", "King Kong"]
         }
     };
-
+    //global values used for recipe search
     var dietaryVal = [],
         cuisineVal = "",
         includeVal = [],
@@ -123,15 +123,21 @@ $(document).ready(function() {
     //remove search-form
     $("#submit").click(function(e) {
         e.preventDefault();
+
         console.log("button test")
+
         //removes the search etc from main page when button clicked
         $("#search-form").remove();
+
         //adds dummy text for recipe results page 
         $("#mainInformationDiv").append("<h1>" + "recipe results...");
+        
         //Creates a new button and appends to the page (for getting recipe)
         var getRecipeButton = $("<input type='button' value='new button'>");
         $("#mainInformationDiv").append(getRecipeButton);
 
+
+    
     });
 
     $(document).on("click", "#flavorPage", function(event) {
@@ -149,3 +155,53 @@ $(document).ready(function() {
 
 
 });
+
+
+
+//================== Chance ===================================
+
+//uses JQuery to grab values of slider when each individual slider moves
+ $("#rangeSlider1, #rangeSlider2, #rangeSlider3, #rangeSlider4").on('change', function() {
+
+     console.log($("#rangeSlider1").val());
+     console.log($("#rangeSlider2").val());
+     console.log($("#rangeSlider3").val());
+     console.log($("#rangeSlider4").val());
+ });
+
+ //functions that grab slider values and changes value on page
+ function captureSliderChange1(val) {
+     document.getElementById("slider1HTMLUpdate").innerHTML = val;
+ }
+
+ function captureSliderChange2(val) {
+     document.getElementById("slider2HTMLUpdate").innerHTML = val;
+ }
+
+ function captureSliderChange3(val) {
+     document.getElementById("slider3HTMLUpdate").innerHTML = val;
+ }
+
+ function captureSliderChange4(val) {
+     document.getElementById("slider4HTMLUpdate").innerHTML = val;
+ }
+ 
+ //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
+ //left down here to be used later
+ var userRangeSliderValue1 = function() {
+    return $("#rangeSlider1").val();
+ }
+ 
+ var userRangeSliderValue2 = function() {
+    return $("#rangeSlider2").val();
+ }
+
+ var userRangeSliderValue3 = function() {
+    return $("#rangeSlider3").val();
+ }
+
+ var userRangeSliderValue4 = function() {
+    return $("#rangeSlider4").val();
+ }
+ 
+//=========================================================
