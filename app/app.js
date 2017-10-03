@@ -53,7 +53,7 @@ $(document).ready(function() {
     //global values used for recipe search
     var dietaryVal = [],
         cuisineVal = "",
-        includeVal = [],
+        includeVal = [];
         excludeVal = [],
         spicyVal = 0,
         savoryVal = 0,
