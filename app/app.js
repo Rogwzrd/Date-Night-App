@@ -95,6 +95,7 @@ $(document).ready(function() {
         method: "GET"
     }).done(function(response) {
         console.log(response);
+
     });
 
     //New (Mike)-
@@ -299,6 +300,21 @@ $(document).ready(function() {
 
 
     //==============================================================
+        // (Brelon) Verified that recipe(s) would show up in the console
+        console.log(response.matches[0].recipeName);
+        // (Brelon)Verified that ingredient(s) would shou up in the console
+        console.log(response.matches[0].ingredients);
+        // (Brelon) Created a div to 'hold' our recipes
+        var recipeDiv = $("<div>");
+        // (Brelon) Created a div to 'hold' our ingredients
+        var ingDiv = $("<div>");
+        // (Brelon) Display the recipe and ingredients on the page
+        // hint: make sure recipe is above the ingredients
+
+
+
+    })
+
 
     //dropdown selections
     $('.ui.dropdown').dropdown();
