@@ -53,7 +53,7 @@ $(document).ready(function() {
     //global values used for recipe search
     var dietaryVal = [],
         cuisineVal = "",
-        includeVal = [],
+        includeVal,
         excludeVal = [],
         spicyVal = 0,
         savoryVal = 0,
@@ -79,7 +79,7 @@ $(document).ready(function() {
     //search terms and key for api
     var foodSearch = "curry";
     var yummlyKey = "af6e286e83053654370aa379046e6c3b";
-    var allwedIngredients = [];
+    var allowedIngredients = [];
     var excludedIngredients = [];
     var allowedAllergery = [];
     var allowedDiet = [];
@@ -320,7 +320,7 @@ $(document).ready(function() {
     $('.ui.dropdown').dropdown();
 
     // ===========================================================
-    // NEW (Star) - I replaced the previous function with these two functions
+    // (Star) - I replaced the previous function with these two functions
     // The variables for diet and cuisine now change values based on dropdown selections
     $("#diet").on("change", function() {
         dietaryVal = $("#diet").val();
@@ -351,13 +351,50 @@ $(document).ready(function() {
         var getRecipeButton = $("<input type='button' value='new button'>");
         $("#mainInformationDiv").append(getRecipeButton);
 
-        makeRecipeQuery(["ham", "pickles"], ["cheese", "bread"], ["paleo"], ["american"],4,6,7,1);
+        searchRecipes()
+        makeRecipeQuery(["ham"], ["cheese"],4,6,7,1);
         hideMainPage();
         showRecipe();
         yummlyCall;
+
     });
 });
 
+    //========Star===========================================================
+    // Function for compiling search criteria and running recipe search
+    //========NOT WORKING=============
+    function searchRecipes() {
+        var includeVal = $("#search").val();
+        console.log(includeVal);
+
+        allowedIngredients.push($("#search").val());
+        console.log(allowedIngredients);
+
+        var excludeVal = $("#exclude").val();
+        console.log(excludeVal);
+    }
+
+    // ==================Star=========================================
+    // Flavor variables change based on respective slider value
+    $(".slider").on("change",function () {
+        spicyVal = $("#rangeSlider1").val();
+        savoryVal = $("#rangeSlider2").val();
+        saltyVal = $("#rangeSlider3").val();
+        sweetVal = $("#rangeSlider4").val();
+    });
+
+    // Here's some pseudocode to get the ball rolling on how to
+    // apply the value of a slider to the movie search api. It needs a lot of work.
+    // movieSearch = movies.===whichever slider was used===.====index to match slider value
+    // === then use math.random(math.floor) to determine which item in that array will be searched.
+
+
+    //==================================================================
+
+    $(document).on("click", "#flavorPage", function(event) {
+        event.preventDefault();
+
+    });
 
 //================== Chance ===================================
 
@@ -403,6 +440,7 @@ var userRangeSliderValue3 = function() {
 
 var userRangeSliderValue4 = function() {
     return $("#rangeSlider4").val();
-}
 
+ }
+ 
 //=========================================================
