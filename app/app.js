@@ -95,15 +95,24 @@ $(document).ready(function() {
         method: "GET"
     }).done(function(response) {
         console.log(response);
-
+        // (Brelon) Created a variable that will consist of our recipe
+        var recipeName = response.matches[0].recipeName;
+        // (Brelon) Created a variable that will consist of our ingredients
+        var ingredients = response.matches[0].ingredients;
         // (Brelon) display recipe in the console
         console.log(response.matches[0].recipeName);
         // (Brelon) display ingredients in the console
         console.log(response.matches[0].ingredients);
-        // (Brelon) Created a div to hold the recipes
-        var recipeDiv = $("<div>");
-        // (Brelon) Created a div to hold the ingredients
-        var ingDiv = $("<div>");
+        // (Brelon) Created a variable that will become a div for Recipe(s).
+        var recipeDiv = $("<div><h1>'"+recipeName+"'</h1></div>");
+        // (Brelon) Created a variable that will become a div for Ingredient(s).
+        var ingDiv = $("<div><h1>'"+ingredients+"'</h1></div>");
+        // (Brelon) Attached the ingredient(s) variable to the recipe id in order to display it on the html
+        $("#recipe").append(ingDiv);
+        // (Brelon) Attached the recipe variable to the results id in order to display it on the html
+        $("#results").append(recipeDiv);
+
+
     })
 
     });
@@ -135,7 +144,7 @@ $(document).ready(function() {
     // //execute funciton
     // createIngredientsQuery(testIngredientArray);
 
-<<<<<<< HEAD
+
     // //this funciton concatenates the excluded api query
     // function createExcludedQuery(array) {
     //     for (var i = 0; i < array.length; i++) {
@@ -145,7 +154,7 @@ $(document).ready(function() {
     //     console.log(excludeVal)
 
     // };
-=======
+
     //this funciton concatenates the excluded api query
     function createExcludedQuery(array) {
         for (var i = 0; i < array.length; i++) {
@@ -155,7 +164,7 @@ $(document).ready(function() {
         console.log(excludeVal)
         return excludeVal
     };
->>>>>>> 7e1715ecf8722fd62702599afab5f8e6c0d18d6f
+
 
     //execute funciton
     createExcludedQuery(testIngredientArray);
