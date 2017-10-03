@@ -53,7 +53,7 @@ $(document).ready(function() {
     //global values used for recipe search
     var dietaryVal = [],
         cuisineVal = "",
-        includeVal,
+        includeVal = [],
         excludeVal = [],
         spicyVal = 0,
         savoryVal = 0,
@@ -102,9 +102,9 @@ $(document).ready(function() {
     //==============================================================
     //object to compile the search query for the api
 
-    function hideMainPage() {
-        $("#mainPage").hide();
-    };
+    // function hideMainPage() {
+    //     $("#mainPage").hide();
+    // };
 
     function showMainPage() {
         $("#mainPage").show();
@@ -342,7 +342,9 @@ $(document).ready(function() {
         console.log("button test")
 
         //removes the search etc from main page when button clicked
-        // $("#search-form").remove();
+        //This doesn't work when it's a function created earlier and called here.
+        // It only works when putting the instructions directly into this function.
+        $("#mainPage").hide();
 
         //adds dummy text for recipe results page 
         $("#mainInformationDiv").append("<h1>" + "recipe results...");
@@ -353,7 +355,7 @@ $(document).ready(function() {
 
         searchRecipes()
         makeRecipeQuery(["ham"], ["cheese"],4,6,7,1);
-        hideMainPage();
+        // hideMainPage();
         showRecipe();
         yummlyCall;
 
@@ -367,6 +369,7 @@ $(document).ready(function() {
         var includeVal = $("#search").val();
         console.log(includeVal);
 
+        var allowedIngredients = [];
         allowedIngredients.push($("#search").val());
         console.log(allowedIngredients);
 
@@ -377,10 +380,10 @@ $(document).ready(function() {
     // ==================Star=========================================
     // Flavor variables change based on respective slider value
     $(".slider").on("change",function () {
-        spicyVal = $("#rangeSlider1").val();
-        savoryVal = $("#rangeSlider2").val();
-        saltyVal = $("#rangeSlider3").val();
-        sweetVal = $("#rangeSlider4").val();
+        sweetVal = $("#rangeSlider1").val();
+        saltyVal = $("#rangeSlider2").val();
+        savoryVal = $("#rangeSlider3").val();
+        spicyVal = $("#rangeSlider4").val();
     });
 
     // Here's some pseudocode to get the ball rolling on how to
