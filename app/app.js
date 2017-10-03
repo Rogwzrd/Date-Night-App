@@ -119,7 +119,7 @@ $(document).ready(function() {
     //this funciton concatenates the ingredients api query
     function createIngredientsQuery(array) {
         for (var i = 0; i < array.length; i++) {
-            var convertedIngredients = "&q=" + array[i];
+            var convertedIngredients = "&alllowedIngredient[]=" + array[i];
             includeVal.push(convertedIngredients)
         };
         console.log(includeVal)
