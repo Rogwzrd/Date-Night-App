@@ -53,7 +53,7 @@ $(document).ready(function() {
     //global values used for recipe search
     var dietaryVal = [],
         cuisineVal = "",
-        includeVal = [],
+        includeVal= [],
         excludeVal = [],
         spicyVal = 0,
         savoryVal = 0,
@@ -95,6 +95,7 @@ $(document).ready(function() {
         method: "GET"
     }).done(function(response) {
         console.log(response);
+
     });
 
     //New (Mike)-
@@ -181,8 +182,9 @@ $(document).ready(function() {
             console.log(convertedSpicy);
             return convertedSpicy;
         }
-};
-     function createSweetFlavorQuery(sweet) {       
+    };
+
+    function createSweetFlavorQuery(sweet) {
         if (sweet == 9) {
             var convertedSweet = "&flavor.sweet.min=0." + (sweet - 1) + "&flavor.sweet.max=1";
             console.log(convertedSweet);
@@ -197,6 +199,7 @@ $(document).ready(function() {
             return convertedSweet;
         }
     };
+
     function createSavoryFlavorQuery(savory) {
         if (savory == 9) {
             var convertedSavory = "&flavor.meaty.min=0." + (savory - 1) + "&flavor.meaty.max=1";
@@ -211,7 +214,8 @@ $(document).ready(function() {
             console.log(convertedSavory);
             return convertedSavory;
         }
-};
+    };
+
     function createSaltyFlavorQuery(salty) {
         if (salty == 9) {
             var convertedSalty = "&flavor.salty.min=0." + (salty - 1) + "&flavor.salty.max=1";
@@ -245,19 +249,19 @@ $(document).ready(function() {
             convertedMovieSearch = movies.action[num.toString()][Math.floor(Math.random() * 4)];
             console.log(convertedMovieSearch);
 
-        //if sweet is the dominant flavor
+            //if sweet is the dominant flavor
         } else if (sweet > spicy && sweet > savory && sweet > salty) {
             var num = sweet
             convertedMovieSearch = movies.drama[num.toString()][Math.floor(Math.random() * 4)];
             console.log(convertedMovieSearch);
 
-        //if savory is the dominant flavor
+            //if savory is the dominant flavor
         } else if (savory > sweet && savory > savory && spicy > salty) {
             var num = savory
             convertedMovieSearch = movies.romance[num.toString()][Math.floor(Math.random() * 4)];
             console.log(convertedMovieSearch);
 
-        //if salty is the dominant flavor
+            //if salty is the dominant flavor
         } else if (salty > sweet && salty > savory && salty > spicy) {
             var num = salty
             convertedMovieSearch = movies.horror[num.toString()][Math.floor(Math.random() * 4)];
@@ -282,12 +286,13 @@ $(document).ready(function() {
     // }
 
     //current iteratino of query functiono missing the diet and cuisine query types
-        function makeRecipeQuery(include,exclude,spicy,salty,savory, sweet) {
+    function makeRecipeQuery(include, exclude, spicy, salty, savory, sweet) {
         var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b&requirePicture=true";
-        function concatRecipeValues(){
+
+        function concatRecipeValues() {
             debugger;
             var conCattedUrp = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
-            console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude)+ createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) +createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty));
+            console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty));
         }
         concatRecipeValues();
     }
@@ -325,49 +330,103 @@ $(document).ready(function() {
     };
 
 
-    //==============================================================
-
-    //dropdown selections
-    $('.ui.dropdown').dropdown();
-
-    // ===========================================================
-    // NEW (Star) - I replaced the previous function with these two functions
-    // The variables for diet and cuisine now change values based on dropdown selections
-    $("#diet").on("change", function() {
-        dietaryVal = $("#diet").val();
-        console.log(dietaryVal);
-    });
-
-    $("#cuisine").on("change", function() {
-        cuisineVal = $("#cuisine").val();
-        console.log(cuisineVal);
-    });
-
-    //============================================================
+    // //==============================================================
+    // // (Brelon) Verified that recipe(s) would show up in the console
+    // console.log(response.matches[0].recipeName);
+    // // (Brelon)Verified that ingredient(s) would shou up in the console
+    // console.log(response.matches[0].ingredients);
+    // // (Brelon) Created a div to 'hold' our recipes
+    // var recipeDiv = $("<div>");
+    // // (Brelon) Created a div to 'hold' our ingredients
+    // var ingDiv = $("<div>");
+    // // (Brelon) Display the recipe and ingredients on the page
+    // // hint: make sure recipe is above the ingredients
 
 
-    //This function runs when you press the submit button on the main page
-    $("#submit").click(function(e) {
-        e.preventDefault();
 
-        console.log("button test")
+})
 
-        //removes the search etc from main page when button clicked
-        // $("#search-form").remove();
 
-        //adds dummy text for recipe results page 
-        $("#mainInformationDiv").append("<h1>" + "recipe results...");
+//dropdown selections
+$('.ui.dropdown').dropdown();
 
-        //Creates a new button and appends to the page (for getting recipe)
-        var getRecipeButton = $("<input type='button' value='new button'>");
-        $("#mainInformationDiv").append(getRecipeButton);
-
-        hideMainPage();
-        showRecipe();
-        yummlyCall;
-    });
+// ===========================================================
+// (Star) - I replaced the previous function with these two functions
+// The variables for diet and cuisine now change values based on dropdown selections
+$("#diet").on("change", function() {
+    dietaryVal = $("#diet").val();
+    console.log(dietaryVal);
 });
 
+$("#cuisine").on("change", function() {
+    cuisineVal = $("#cuisine").val();
+    console.log(cuisineVal);
+});
+
+//============================================================
+
+
+//This function runs when you press the submit button on the main page
+$("#submit").click(function(e) {
+    e.preventDefault();
+
+    console.log("button test")
+
+    //removes the search etc from main page when button clicked
+    // $("#search-form").remove();
+
+    //adds dummy text for recipe results page 
+    $("#mainInformationDiv").append("<h1>" + "recipe results...");
+
+    //Creates a new button and appends to the page (for getting recipe)
+    var getRecipeButton = $("<input type='button' value='new button'>");
+    $("#mainInformationDiv").append(getRecipeButton);
+
+
+    searchRecipes()
+    makeRecipeQuery(["ham"], ["cheese"], 4, 6, 7, 1);
+    hideMainPage();
+    showRecipe();
+    yummlyCall;
+
+});
+
+
+//========Star===========================================================
+// Function for compiling search criteria and running recipe search
+//========NOT WORKING=============
+function searchRecipes() {
+    var includeVal = $("#search").val();
+    console.log(includeVal);
+
+    allowedIngredients.push($("#search").val());
+    console.log(allowedIngredients);
+
+    var excludeVal = $("#exclude").val();
+    console.log(excludeVal);
+}
+
+// ==================Star=========================================
+// Flavor variables change based on respective slider value
+$(".slider").on("change", function() {
+    spicyVal = $("#rangeSlider1").val();
+    savoryVal = $("#rangeSlider2").val();
+    saltyVal = $("#rangeSlider3").val();
+    sweetVal = $("#rangeSlider4").val();
+});
+
+// Here's some pseudocode to get the ball rolling on how to
+// apply the value of a slider to the movie search api. It needs a lot of work.
+// movieSearch = movies.===whichever slider was used===.====index to match slider value
+// === then use math.random(math.floor) to determine which item in that array will be searched.
+
+
+//==================================================================
+
+$(document).on("click", "#flavorPage", function(event) {
+    event.preventDefault();
+
+});
 
 //================== Chance ===================================
 
@@ -413,6 +472,7 @@ var userRangeSliderValue3 = function() {
 
 var userRangeSliderValue4 = function() {
     return $("#rangeSlider4").val();
+
 }
 
 //=========================================================
