@@ -1,4 +1,3 @@
-$(document).ready(function() {
 
     var movies = {
         action: {
@@ -411,22 +410,6 @@ $(document).ready(function() {
 
     //================== Chance ===================================
 
-    //functions that grab slider values and changes value on page
-    function captureSliderChange1(val) {
-        document.getElementById("slider1HTMLUpdate").innerHTML = val;
-    }
-
-    function captureSliderChange2(val) {
-        document.getElementById("slider2HTMLUpdate").innerHTML = val;
-    }
-
-    function captureSliderChange3(val) {
-        document.getElementById("slider3HTMLUpdate").innerHTML = val;
-    }
-
-    function captureSliderChange4(val) {
-        document.getElementById("slider4HTMLUpdate").innerHTML = val;
-    }
 
     //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
     //left down here to be used later
@@ -446,5 +429,22 @@ $(document).ready(function() {
         return $("#rangeSlider4").val();
 
     }
-});
+
+
+    //functions that grab slider values and changes value on page
+    function captureSliderChange1(val) {
+        document.getElementById("slider1HTMLUpdate").innerHTML = val;
+    }
+
+    function captureSliderChange2(val) {
+        document.getElementById("slider2HTMLUpdate").innerHTML = val;
+    }
+
+    function captureSliderChange3(val) {
+        document.getElementById("slider3HTMLUpdate").innerHTML = val;
+    }
+
+    function captureSliderChange4(val) {
+        document.getElementById("slider4HTMLUpdate").innerHTML = val;
+    }
 //=========================================================
