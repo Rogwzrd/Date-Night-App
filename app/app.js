@@ -358,7 +358,7 @@ $(document).ready(function() {
         yummlyCall;
 
     });
-});
+
 
     //========Star===========================================================
     // Function for compiling search criteria and running recipe search
