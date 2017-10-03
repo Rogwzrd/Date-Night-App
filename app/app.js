@@ -55,10 +55,10 @@ $(document).ready(function() {
         cuisineVal = "",
         includeVal = [],
         excludeVal = [],
-        spicyVal = 0,
-        savoryVal = 0,
-        saltyVal = 0,
-        sweetVal = 0;
+        spicyVal = 3,
+        savoryVal = 5,
+        saltyVal = 8,
+        sweetVal = 2;
 
     //search terms and key for api
 
@@ -79,24 +79,30 @@ $(document).ready(function() {
     //search terms and key for api
     var foodSearch = "curry";
     var yummlyKey = "af6e286e83053654370aa379046e6c3b";
-    var allowedIngredients = [];
-    var excludedIngredients = [];
+    var allowedIngredients = ["ham"];
+    var excludedIngredients = ["cheese"];
     var allowedAllergery = [];
     var allowedDiet = [];
     var allowedCuisine = [];
     var excludedCuisine = [];
     var maxTotalTime = 0;
+    var yummlyObject = {};
     //api query
-    var yummlyQueryURL = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=" + yummlyKey + "&q=" + foodSearch + "&requirePicture=true";
+    var yummlyQueryURL = makeRecipeQuery(allowedIngredients, excludedIngredients, spicyVal, savoryVal, sweetVal, saltyVal);
 
     //yummly api call
-    var yummlyCall = $.ajax({
-        url: yummlyQueryURL,
-        method: "GET"
-    }).done(function(response) {
-        console.log(response);
-
-    });
+    function yummlyCall(queryURL) {
+        console.log(queryURL);
+        $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+            .done(function(response) {
+                yummlyObject = response;
+                console.log(yummlyObject);
+                showRecipe();
+            });
+    }
 
     //New (Mike)-
     //==============================================================
@@ -232,12 +238,6 @@ $(document).ready(function() {
         };
     }
 
-    //test function
-    createSpicyFlavorQuery(1);
-    createSavoryFlavorQuery(4);
-    createSweetFlavorQuery(9);
-    createSaltyFlavorQuery(8);
-
     //this function will determine the movie to searched in the api from the movie data structure
     //not currently working
     function movieFlavorGenerator(spicy, sweet, savory, salty) {
@@ -283,52 +283,45 @@ $(document).ready(function() {
     //         console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createDietQuery(diet) + createFlavorQuery(spicy, sweet, savory, salty))
     //     }
     //     concatRecipeValues();
-    // }
+    // 
 
     //current iteratino of query functiono missing the diet and cuisine query types
     function makeRecipeQuery(include, exclude, spicy, salty, savory, sweet) {
         var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b&requirePicture=true";
 
         function concatRecipeValues() {
-            debugger;
-            var conCattedUrp = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
+            var conCattedUrl = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
             console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty));
+            return conCattedUrl
         }
-        concatRecipeValues();
+        return concatRecipeValues();
     }
-
-    //test run
-    makeRecipeQuery(["ham"], ["pickles"], 5, 5, 5, 5);
-
 
     //rough code to show results of api code for recipe results
     // not working, in need of changes
     function showRecipe() {
 
-        //run the api when you hit the submit button
-        console.log(yummlyCall)
+        // for loop that itterates through the 10 matches from the api call
+        for (var i = 0; i < yummlyObject.matches.length; i++) {
+            console.log(yummlyObject.matches[i])
+     
 
-        //for loop that itterates through the 10 matches from the api call
-        for (var i = 0; i < yummlyCall.responseJSON.matches.length; i++) {
-            console.log(yummlyCall.responseJSON.matches[i])
-        }
-        var recipeConatiner = $("<div>").attr("id", "reicpe");
+        var recipeContainer = $("<div>").attr("id", "recipe-" + [i]);
 
-        var recipeNameDiv = $("<h2>").text("recipe name is:..."),
-            ingredientsDiv = $("<h3>").text("ingredients are: ..."),
-            prepTimeDiv = $("<h3>").text("prep time is: ..."),
+        var recipeNameDiv = $("<h2>").text("Recipe:" + yummlyObject.matches[i].recipeName),
+            ingredientsDiv = $("<h3>").text("Ingredients:" + yummlyObject.matches[i].ingredients),
+            prepTimeDiv = $("<h3>").text("Prep time:" + yummlyObject.matches[i].totalTimeInSeconds),
             howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
-        recipeConatiner
+        recipeContainer
             .append(recipeNameDiv)
             .append(ingredientsDiv)
             .append(prepTimeDiv)
             .append(howToMakeButton);
 
-        $("#results").append(recipeConatiner);
-
+        $("#mainInformationDiv").append(recipeContainer);
+   }
     };
-
 
     // //==============================================================
     // // (Brelon) Verified that recipe(s) would show up in the console
@@ -344,131 +337,114 @@ $(document).ready(function() {
 
 
 
-})
+    //dropdown selections
+    $('.ui.dropdown').dropdown();
+
+    // ===========================================================
+    // (Star) - I replaced the previous function with these two functions
+    // The variables for diet and cuisine now change values based on dropdown selections
+    $("#diet").on("change", function() {
+        dietaryVal = $("#diet").val();
+        console.log(dietaryVal);
+    });
+
+    $("#cuisine").on("change", function() {
+        cuisineVal = $("#cuisine").val();
+        console.log(cuisineVal);
+    });
+
+    //============================================================
 
 
-//dropdown selections
-$('.ui.dropdown').dropdown();
+    //This function runs when you press the submit button on the main page
+    $("#submit").click(function(e) {
+        e.preventDefault();
 
-// ===========================================================
-// (Star) - I replaced the previous function with these two functions
-// The variables for diet and cuisine now change values based on dropdown selections
-$("#diet").on("change", function() {
-    dietaryVal = $("#diet").val();
-    console.log(dietaryVal);
+        //adds dummy text for recipe results page 
+        $("#mainInformationDiv").append("<h1>" + "recipe results...");
+
+        hideMainPage();
+        yummlyCall(yummlyQueryURL);
+
+    });
+
+
+    //========Star===========================================================
+    // Function for compiling search criteria and running recipe search
+    //========NOT WORKING=============
+    function searchRecipes() {
+        var userIncludeInput = $("#search").val();
+        includeVal.push(userIncludeInput)
+        console.log(includeVal);
+
+        var userExcludeInput = $("#exclude").val();
+        excludeVal.push(userExcludeInput)
+        console.log(excludeVal);
+    }
+
+    // ==================Star=========================================
+    // Flavor variables change based on respective slider value
+    $(".slider").on("change", function() {
+        spicyVal = $("#rangeSlider1").val();
+        console.log("the spiciness  is " + spicyVal);
+        savoryVal = $("#rangeSlider2").val();
+        console.log("the savoryness  is " + savoryVal);
+        saltyVal = $("#rangeSlider3").val();
+        console.log("the saltiness  is " + saltyVal)
+        sweetVal = $("#rangeSlider4").val();
+        console.log("the sweetness  is " + sweetVal)
+
+    });
+
+    // Here's some pseudocode to get the ball rolling on how to
+    // apply the value of a slider to the movie search api. It needs a lot of work.
+    // movieSearch = movies.===whichever slider was used===.====index to match slider value
+    // === then use math.random(math.floor) to determine which item in that array will be searched.
+
+
+    //==================================================================
+
+    $(document).on("click", "#flavorPage", function(event) {
+        event.preventDefault();
+
+    });
+
+    //================== Chance ===================================
+
+    //functions that grab slider values and changes value on page
+    function captureSliderChange1(val) {
+        document.getElementById("slider1HTMLUpdate").innerHTML = val;
+    }
+
+    function captureSliderChange2(val) {
+        document.getElementById("slider2HTMLUpdate").innerHTML = val;
+    }
+
+    function captureSliderChange3(val) {
+        document.getElementById("slider3HTMLUpdate").innerHTML = val;
+    }
+
+    function captureSliderChange4(val) {
+        document.getElementById("slider4HTMLUpdate").innerHTML = val;
+    }
+
+    //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
+    //left down here to be used later
+    var userRangeSliderValue1 = function() {
+        return $("#rangeSlider1").val();
+    }
+
+    var userRangeSliderValue2 = function() {
+        return $("#rangeSlider2").val();
+    }
+
+    var userRangeSliderValue3 = function() {
+        return $("#rangeSlider3").val();
+    }
+
+    var userRangeSliderValue4 = function() {
+        return $("#rangeSlider4").val();
+
+    }
 });
-
-$("#cuisine").on("change", function() {
-    cuisineVal = $("#cuisine").val();
-    console.log(cuisineVal);
-});
-
-//============================================================
-
-
-//This function runs when you press the submit button on the main page
-$("#submit").click(function(e) {
-    e.preventDefault();
-
-    console.log("button test")
-
-    //removes the search etc from main page when button clicked
-    // $("#search-form").remove();
-
-    //adds dummy text for recipe results page 
-    $("#mainInformationDiv").append("<h1>" + "recipe results...");
-
-    //Creates a new button and appends to the page (for getting recipe)
-    var getRecipeButton = $("<input type='button' value='new button'>");
-    $("#mainInformationDiv").append(getRecipeButton);
-
-
-    searchRecipes()
-    makeRecipeQuery(["ham"], ["cheese"], 4, 6, 7, 1);
-    hideMainPage();
-    showRecipe();
-    yummlyCall;
-
-});
-
-
-//========Star===========================================================
-// Function for compiling search criteria and running recipe search
-//========NOT WORKING=============
-function searchRecipes() {
-    var includeVal = $("#search").val();
-    console.log(includeVal);
-
-    allowedIngredients.push($("#search").val());
-    console.log(allowedIngredients);
-
-    var excludeVal = $("#exclude").val();
-    console.log(excludeVal);
-}
-
-// ==================Star=========================================
-// Flavor variables change based on respective slider value
-$(".slider").on("change", function() {
-    spicyVal = $("#rangeSlider1").val();
-    console.log("the spiciness  is " + spicyVal);
-    savoryVal = $("#rangeSlider2").val();
-    console.log("the savoryness  is " + savoryVal);
-    saltyVal = $("#rangeSlider3").val();
-    console.log("the saltiness  is " + saltyVal)
-    sweetVal = $("#rangeSlider4").val();
-    console.log("the sweetness  is " + sweetVal)
-
-});
-
-// Here's some pseudocode to get the ball rolling on how to
-// apply the value of a slider to the movie search api. It needs a lot of work.
-// movieSearch = movies.===whichever slider was used===.====index to match slider value
-// === then use math.random(math.floor) to determine which item in that array will be searched.
-
-
-//==================================================================
-
-$(document).on("click", "#flavorPage", function(event) {
-    event.preventDefault();
-
-});
-
-//================== Chance ===================================
-
-//functions that grab slider values and changes value on page
-function captureSliderChange1(val) {
-    document.getElementById("slider1HTMLUpdate").innerHTML = val;
-}
-
-function captureSliderChange2(val) {
-    document.getElementById("slider2HTMLUpdate").innerHTML = val;
-}
-
-function captureSliderChange3(val) {
-    document.getElementById("slider3HTMLUpdate").innerHTML = val;
-}
-
-function captureSliderChange4(val) {
-    document.getElementById("slider4HTMLUpdate").innerHTML = val;
-}
-
-//Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
-//left down here to be used later
-var userRangeSliderValue1 = function() {
-    return $("#rangeSlider1").val();
-}
-
-var userRangeSliderValue2 = function() {
-    return $("#rangeSlider2").val();
-}
-
-var userRangeSliderValue3 = function() {
-    return $("#rangeSlider3").val();
-}
-
-var userRangeSliderValue4 = function() {
-    return $("#rangeSlider4").val();
-
-}
-
 //=========================================================
