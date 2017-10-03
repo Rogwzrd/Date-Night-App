@@ -1,4 +1,3 @@
-
     var movies = {
         action: {
             "0": ["Star Wars: Episode V - The Empire Strikes Back", "Spartacus", "Sicario", "The Lord of the Rings: The Two Towers", "Chicken Run"],
@@ -90,6 +89,7 @@
     var yummlyQueryURL = makeRecipeQuery(allowedIngredients, excludedIngredients, spicyVal, savoryVal, sweetVal, saltyVal);
 
     //yummly api call
+
     function yummlyCall(queryURL) {
         console.log(queryURL);
         $.ajax({
@@ -116,6 +116,7 @@
     }
 
     //this funciton concatenates the ingredients api query
+
     function createIngredientsQuery(array) {
         for (var i = 0; i < array.length; i++) {
             var convertedIngredients = "&alllowedIngredient[]=" + array[i];
@@ -124,7 +125,6 @@
         console.log(includeVal)
         return includeVal
     };
-
     //this funciton concatenates the excluded api query
     function createExcludedQuery(array) {
         for (var i = 0; i < array.length; i++) {
@@ -134,6 +134,7 @@
         console.log(excludeVal)
         return excludeVal
     };
+
 
     //this function concatenates the diet api query
     //this function needs additional concatenation code
@@ -336,6 +337,7 @@
 
 
 
+
     //dropdown selections
     $('.ui.dropdown').dropdown();
 
@@ -394,6 +396,7 @@
         console.log("the sweetness  is " + sweetVal)
 
     });
+
 
     // Here's some pseudocode to get the ball rolling on how to
     // apply the value of a slider to the movie search api. It needs a lot of work.
