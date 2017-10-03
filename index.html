@@ -54,16 +54,8 @@
                     <input type="text" placeholder="Exclude...">
                 </div>
             </div>
-            <div>
-                <h4>Flavor Profile:</h4>
-                <div class="ui segment">
-                    <div class="ui range"></div>
-                    <div class="ui range" id="salty"></div>
-                    <div class="ui range" id="savory"></div>
-                    <div class="ui range" id="spicy"></div>
-                    <div class="ui range" id="sweet"></div>
-                </div>
-            </div>
+            <h4>Flavor Profile:</h4>
+            <!--(Star) Removed my old slider code that was replaced by Chance's.-->
             <div id=sliderSectionAll>
                 <div id="slidecontainer1">
                     <input type="range" min="0" max="9" value="0" step="1" class="slider" id="rangeSlider1" onChange="captureSliderChange1(this.value)"> <strong> SWEET:&nbsp </strong> <span id="slider1HTMLUpdate" class="flavorNumberDisplay"> 0 </span>
@@ -80,10 +72,8 @@
             </div>
             <button class="ui blue button" id="submit" type="submit">Submit</button>
         </div>
-    </div>
-    <div id="results"></div>
-    <br>
-    <div id="recipe"></div>
+        <div id="results"></div>
+        <div id="recipe"></div>
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
