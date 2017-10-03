@@ -53,7 +53,7 @@ $(document).ready(function() {
     //global values used for recipe search
     var dietaryVal = [],
         cuisineVal = "",
-        includeVal= [],
+        includeVal = [],
         excludeVal = [],
         spicyVal = 0,
         savoryVal = 0,
@@ -410,9 +410,14 @@ function searchRecipes() {
 // Flavor variables change based on respective slider value
 $(".slider").on("change", function() {
     spicyVal = $("#rangeSlider1").val();
+    console.log("the spiciness  is " + spicyVal);
     savoryVal = $("#rangeSlider2").val();
+    console.log("the savoryness  is " + savoryVal);
     saltyVal = $("#rangeSlider3").val();
+    console.log("the saltiness  is " + saltyVal)
     sweetVal = $("#rangeSlider4").val();
+    console.log("the sweetness  is " + sweetVal)
+
 });
 
 // Here's some pseudocode to get the ball rolling on how to
@@ -429,15 +434,6 @@ $(document).on("click", "#flavorPage", function(event) {
 });
 
 //================== Chance ===================================
-
-//uses JQuery to grab values of slider when each individual slider moves
-$("#rangeSlider1, #rangeSlider2, #rangeSlider3, #rangeSlider4").on('change', function() {
-
-    console.log($("#rangeSlider1").val());
-    console.log($("#rangeSlider2").val());
-    console.log($("#rangeSlider3").val());
-    console.log($("#rangeSlider4").val());
-});
 
 //functions that grab slider values and changes value on page
 function captureSliderChange1(val) {
