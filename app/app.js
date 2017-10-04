@@ -70,7 +70,7 @@ var omdbQueryURL = "http://www.omdbapi.com/?t=" + movieSearch + "&apikey=" + omd
 var omdbCall = $.ajax({
     url: omdbQueryURL,
     method: "GET"
-}).done(function (response) {
+}).done(function(response) {
     console.log(response);
 });
 
@@ -96,7 +96,7 @@ function yummlyCall(queryURL) {
         url: queryURL,
         method: "GET"
     })
-        .done(function (response) {
+        .done(function(response) {
             yummlyObject = response;
             console.log(yummlyObject);
             showRecipe();
@@ -283,7 +283,7 @@ movieFlavorGenerator(8, 3, 6, 0);
 //         console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createDietQuery(diet) + createFlavorQuery(spicy, sweet, savory, salty))
 //     }
 //     concatRecipeValues();
-// 
+//
 
 //current iteratino of query functiono missing the diet and cuisine query types
 function makeRecipeQuery(include, exclude, spicy, salty, savory, sweet) {
@@ -305,12 +305,20 @@ function showRecipe() {
     for (var i = 0; i < yummlyObject.matches.length; i++) {
         console.log(yummlyObject.matches[i])
 
+        // (Star) ================================
+        // Converting prep time seconds to minutes
+        var prepTime = yummlyObject.matches[i].totalTimeInSeconds;
+        var prepTimeConverted = moment.duration(prepTime, "seconds").asMinutes();
 
+        console.log(prepTimeConverted);
+
+
+        //========================================
         var recipeContainer = $("<div>").attr("id", "recipe-" + [i]);
 
-        var recipeNameDiv = $("<h2>").text("Recipe:" + yummlyObject.matches[i].recipeName),
-            ingredientsDiv = $("<h3>").text("Ingredients:" + yummlyObject.matches[i].ingredients),
-            prepTimeDiv = $("<h3>").text("Prep time:" + yummlyObject.matches[i].totalTimeInSeconds),
+        var recipeNameDiv = $("<h2>").text("Recipe: " + yummlyObject.matches[i].recipeName),
+            ingredientsDiv = $("<h3>").text("Ingredients: " + yummlyObject.matches[i].ingredients),
+            prepTimeDiv = $("<h3>").text("Prep time: " + prepTimeConverted + " minutes");
             howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
 
@@ -345,12 +353,12 @@ $('.ui.dropdown').dropdown();
 // ===========================================================
 // (Star) - I replaced the previous function with these two functions
 // The variables for diet and cuisine now change values based on dropdown selections
-$("#diet").on("change", function () {
+$("#diet").on("change", function() {
     dietaryVal = $("#diet").val();
     console.log(dietaryVal);
 });
 
-$("#cuisine").on("change", function () {
+$("#cuisine").on("change", function() {
     cuisineVal = $("#cuisine").val();
     console.log(cuisineVal);
 });
@@ -359,10 +367,10 @@ $("#cuisine").on("change", function () {
 
 
 //This function runs when you press the submit button on the main page
-$("#submit").click(function (e) {
+$("#submit").click(function(e) {
     e.preventDefault();
 
-    //adds dummy text for recipe results page 
+    //adds dummy text for recipe results page
     $("#mainInformationDiv").append("<h1>" + "recipe results...");
 
     hideMainPage();
@@ -386,15 +394,15 @@ function searchRecipes() {
 
 // ==================Star=========================================
 // Flavor variables change based on respective slider value
-$(".slider").on("change", function () {
-    spicyVal = $("#rangeSlider1").val();
-    console.log("the spiciness  is " + spicyVal);
-    savoryVal = $("#rangeSlider2").val();
-    console.log("the savoryness  is " + savoryVal);
-    saltyVal = $("#rangeSlider3").val();
-    console.log("the saltiness  is " + saltyVal)
-    sweetVal = $("#rangeSlider4").val();
+$(".slider").on("change", function() {
+    sweetVal = $("#rangeSlider1").val();
     console.log("the sweetness  is " + sweetVal)
+    saltyVal = $("#rangeSlider2").val();
+    console.log("the saltiness  is " + saltyVal)
+    savoryVal = $("#rangeSlider3").val();
+    console.log("the savoryness  is " + savoryVal);
+    spicyVal = $("#rangeSlider4").val();
+    console.log("the spiciness  is " + spicyVal);
 
 });
 
@@ -407,7 +415,7 @@ $(".slider").on("change", function () {
 
 //==================================================================
 
-$(document).on("click", "#flavorPage", function (event) {
+$(document).on("click", "#flavorPage", function(event) {
     event.preventDefault();
 
 });
@@ -417,19 +425,19 @@ $(document).on("click", "#flavorPage", function (event) {
 
 //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
 //left down here to be used later
-var userRangeSliderValue1 = function () {
+var userRangeSliderValue1 = function() {
     return $("#rangeSlider1").val();
 }
 
-var userRangeSliderValue2 = function () {
+var userRangeSliderValue2 = function() {
     return $("#rangeSlider2").val();
 }
 
-var userRangeSliderValue3 = function () {
+var userRangeSliderValue3 = function() {
     return $("#rangeSlider3").val();
 }
 
-var userRangeSliderValue4 = function () {
+var userRangeSliderValue4 = function() {
     return $("#rangeSlider4").val();
 
 }
