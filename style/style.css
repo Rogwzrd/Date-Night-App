@@ -95,4 +95,8 @@ input[type=range]:focus {
 
 }
 
+button {
+    margin-bottom: 15px;
+}
+
 
