@@ -64,7 +64,7 @@ var includeVal = [],
 var movieSearch = movies.action["9"][Math.floor(Math.random() * 4)];
 var omdbKey = "40e9cece"
 //omdb query url
-var omdbQueryURL = "http://www.omdbapi.com/?t=" + movieSearch + "&apikey=" + omdbKey;
+var omdbQueryURL = "http://www.omdbapi.com/?t=" + movieSearch + "&plot=short&apikey=" + omdbKey;
 var omdbObject = {};
 
 //omdb api call
@@ -258,7 +258,7 @@ function showRecipe() {
         var recipeNameDiv = $("<h2>").text("Recipe: " + yummlyObject.matches[i].recipeName),
             ingredientsDiv = $("<h3>").text("Ingredients: " + yummlyObject.matches[i].ingredients),
             prepTimeDiv = $("<h3>").text("Prep time: " + prepTimeConverted + " minutes");
-        howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
+        howToMakeButton = $("<a>").attr("href", "http://www.yummly.com/recipe/" + yummlyObject.matches[i].id).html("<button>Learn How To Make</button>");
 
         recipeContainer
             .append(recipeNameDiv)
@@ -278,13 +278,13 @@ function showMovie() {
 
     var movieNameDiv = $("<h2>").text("Title: " + omdbObject.Title),
         posterDiv = $("<h3>").html("<img src='" + omdbObject.Poster + "'>");
-    // prepTimeDiv = $("<h3>").text("Prep time: " + yummlyObject.matches[i].totalTimeInSeconds),
+        prepTimeDiv = $("<h3>").text("Plot: " + omdbObject.Plot),
     // howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
     movieContainer
         .append(movieNameDiv)
-        .append(posterDiv);
-    // .append(prepTimeDiv)
+        .append(posterDiv)
+        .append(prepTimeDiv);
     // .append(howToMakeButton);
 
     $("#results").append(movieContainer);
@@ -304,7 +304,7 @@ $("#submit").click(function(e) {
 
     var omdbKey = "40e9cece";
     //omdb query url
-    var omdbQueryURL = "http://www.omdbapi.com/?t=" + convertedMovie + "&apikey=" + omdbKey;
+    var omdbQueryURL = "http://www.omdbapi.com/?t=" + convertedMovie + "&plot=short&apikey=" + omdbKey;
 
     omdbCall(omdbQueryURL);
 
