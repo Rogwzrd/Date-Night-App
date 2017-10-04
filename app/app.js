@@ -49,12 +49,14 @@ var movies = {
     }
 };
 //global values used for recipe search
+
 var includeVal = [],
     excludeVal = [],
     spicyVal = 0,
     savoryVal = 0,
     saltyVal = 0,
     sweetVal = 0;
+
 
 //search terms and key for api
 
@@ -112,6 +114,7 @@ function showMainPage() {
 }
 
 //this funciton concatenates the ingredients api query
+
 function createIngredientsQuery(array) {
     if (array.length > 0) {
         for (var i = 0; i < array.length; i++) {
@@ -230,6 +233,7 @@ function makeRecipeQuery(include, exclude, spicy, savory, sweet, salty) {
     return conCattedUrl
 }
 
+
 //rough code to show results of api code for recipe results
 // not working, in need of changes
 function showRecipe() {
@@ -238,12 +242,18 @@ function showRecipe() {
     for (var i = 0; i < yummlyObject.matches.length; i++) {
         console.log(yummlyObject.matches[i])
 
+        // (Star) ================================
+        // Converting prep time seconds to minutes
+        var prepTime = yummlyObject.matches[i].totalTimeInSeconds;
+        var prepTimeConverted = moment.duration(prepTime, "seconds").asMinutes();
 
+        console.log(prepTimeConverted);
+        //========================================
         var recipeContainer = $("<div>").attr("id", "recipe-" + [i]);
 
         var recipeNameDiv = $("<h2>").text("Recipe: " + yummlyObject.matches[i].recipeName),
             ingredientsDiv = $("<h3>").text("Ingredients: " + yummlyObject.matches[i].ingredients),
-            prepTimeDiv = $("<h3>").text("Prep time: " + yummlyObject.matches[i].totalTimeInSeconds),
+            prepTimeDiv = $("<h3>").text("Prep time: " + prepTimeConverted + " minutes");
             howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
         recipeContainer
@@ -251,7 +261,7 @@ function showRecipe() {
             .append(ingredientsDiv)
             .append(prepTimeDiv)
             .append(howToMakeButton);
-
+      
         $("#recipe").append(recipeContainer);
     }
 };
@@ -296,11 +306,11 @@ $("#submit").click(function(e) {
     $("#recipe").append("<h1>" + "recipe results...");
 
     hideMainPage();
-
     includeVal = $("#search").val().split(",");
     console.log(includeVal);
     excludeVal = $("#exclude").val().split(",");
     console.log(excludeVal);
+
 
     var recipeQueryURL = makeRecipeQuery(includeVal, excludeVal, spicyVal, savoryVal, sweetVal, saltyVal)
 
@@ -325,7 +335,6 @@ $(".slider").on("change", function() {
 //==================================================================
 
 //================== Chance ===================================
-
 //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
 //left down here to be used later
 var userRangeSliderValue1 = function() {
@@ -362,4 +371,5 @@ function captureSliderChange3(val) {
 function captureSliderChange4(val) {
     document.getElementById("slider4HTMLUpdate").innerHTML = val;
 }
+
 //=========================================================

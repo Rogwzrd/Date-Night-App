@@ -95,4 +95,16 @@ input[type=range]:focus {
 
 }
 
+button {
+    margin-bottom: 15px;
+}
 
+
+
+/*====================Media Query=========================== */
+
+@media screen and (max-width: 455px){
+    .slider {
+        max-width: 40%;
+    }
+}
