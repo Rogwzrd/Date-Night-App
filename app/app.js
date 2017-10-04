@@ -392,34 +392,34 @@
     //========Star===========================================================
     // Function for compiling search criteria and running recipe search
     //========NOT WORKING=============
-    function searchRecipes() {
-        var userIncludeInput = $("#search").val();
-        includeVal.push(userIncludeInput)
-        console.log(includeVal);
-
-        var allowedIngredients = [];
-        allowedIngredients.push($("#search").val());
-        console.log(allowedIngredients);
-
-        var excludeVal = $("#exclude").val();
-        var userExcludeInput = $("#exclude").val();
-        excludeVal.push(userExcludeInput)
-        console.log(excludeVal);
-    }
+    // function searchRecipes() {
+    //     var userIncludeInput = $("#search").val();
+    //     includeVal.push(userIncludeInput)
+    //     console.log(includeVal);
+    //
+    //     var allowedIngredients = [];
+    //     allowedIngredients.push($("#search").val());
+    //     console.log(allowedIngredients);
+    //
+    //     var excludeVal = $("#exclude").val();
+    //     var userExcludeInput = $("#exclude").val();
+    //     excludeVal.push(userExcludeInput)
+    //     console.log(excludeVal);
+    // }
 
     // ==================Star=========================================
     // Flavor variables change based on respective slider value
 
     $(".slider").on("change", function() {
-        spicyVal = $("#rangeSlider1").val();
-        console.log("the spiciness  is " + spicyVal);
-        savoryVal = $("#rangeSlider2").val();
-        console.log("the savoryness  is " + savoryVal);
-        saltyVal = $("#rangeSlider3").val();
-        console.log("the saltiness  is " + saltyVal)
-        sweetVal = $("#rangeSlider4").val();
-        console.log("the sweetness  is " + sweetVal)
 
+        sweetVal = $("#rangeSlider1").val();
+        console.log("the sweetness  is " + sweetVal)
+        saltyVal = $("#rangeSlider2").val();
+        console.log("the saltiness  is " + saltyVal)
+        savoryVal = $("#rangeSlider3").val();
+        console.log("the savoryness  is " + savoryVal);
+        spicyVal = $("#rangeSlider4").val();
+        console.log("the spiciness  is " + spicyVal);
     });
 
 
