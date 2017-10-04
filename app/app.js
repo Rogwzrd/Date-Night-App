@@ -305,12 +305,20 @@ function showRecipe() {
     for (var i = 0; i < yummlyObject.matches.length; i++) {
         console.log(yummlyObject.matches[i])
 
+        // (Star) ================================
+        // Converting prep time seconds to minutes
+        var prepTime = yummlyObject.matches[i].totalTimeInSeconds;
+        var prepTimeConverted = moment.duration(prepTime, "seconds").asMinutes();
 
+        console.log(prepTimeConverted);
+
+
+        //========================================
         var recipeContainer = $("<div>").attr("id", "recipe-" + [i]);
 
         var recipeNameDiv = $("<h2>").text("Recipe: " + yummlyObject.matches[i].recipeName),
             ingredientsDiv = $("<h3>").text("Ingredients: " + yummlyObject.matches[i].ingredients),
-            prepTimeDiv = $("<h3>").text("Prep time: " + yummlyObject.matches[i].totalTimeInSeconds),
+            prepTimeDiv = $("<h3>").text("Prep time: " + prepTimeConverted + " minutes");
             howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
         recipeContainer
