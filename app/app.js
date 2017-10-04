@@ -75,7 +75,7 @@ function omdbCall(query) {
     }).done(function(response) {
         console.log(response);
         var omdbObject = response;
-        showMovie();
+        // showMovie();
     });
 }
 
@@ -193,33 +193,32 @@ function createSaltyFlavorQuery(salty) {
 //this function will determine the movie to searched in the api from the movie data structure
 //not currently working
 function movieFlavorGenerator(spicy, sweet, savory, salty) {
-    var convertedMovieSearch = null;
 
     //if spicy is the dominant flavor
     if (spicy > sweet && spicy > savory && spicy > salty) {
         var num = spicy
-        convertedMovieInput = movies.action[num.toString()][Math.floor(Math.random() * 4)];
+        var convertedMovieInput = movies.action[num.toString()][Math.floor(Math.random() * 4)];
         console.log(convertedMovieInput);
 
         //if sweet is the dominant flavor
     } else if (sweet > spicy && sweet > savory && sweet > salty) {
         var num = sweet
-        convertedMovieInput = movies.drama[num.toString()][Math.floor(Math.random() * 4)];
+        var convertedMovieInput = movies.drama[num.toString()][Math.floor(Math.random() * 4)];
         console.log(convertedMovieInput);
 
         //if savory is the dominant flavor
     } else if (savory > sweet && savory > savory && spicy > salty) {
         var num = savory
-        convertedMovieInput = movies.romance[num.toString()][Math.floor(Math.random() * 4)];
+        var convertedMovieInput = movies.romance[num.toString()][Math.floor(Math.random() * 4)];
         console.log(convertedMovieInput);
 
         //if salty is the dominant flavor
     } else if (salty > sweet && salty > savory && salty > spicy) {
         var num = salty
-        convertedMovieInput = movies.horror[num.toString()][Math.floor(Math.random() * 4)];
+        var convertedMovieInput = movies.horror[num.toString()][Math.floor(Math.random() * 4)];
         console.log(convertedMovieInput);
     };
-    convertedMovie.push(convertedMovieInput);
+    return convertedMovieInput;
 }
 
 //current iteratino of query functiono missing the diet and cuisine query types
@@ -290,10 +289,10 @@ $("#submit").click(function(e) {
     e.preventDefault();
 
     //assign the parameters for the movies query
-    var convertedMovie = "";
 
-    movieFlavorGenerator(spicyVal, savoryVal, sweetVal, saltyVal)
-    console.log(convertedMovie.toLowerCase().replace(/ /g, "+" ))
+    var convertedMovie = movieFlavorGenerator(spicyVal, savoryVal, sweetVal, saltyVal);
+
+    console.log(convertedMovie)
 
     var omdbKey = "40e9cece";
     //omdb query url
