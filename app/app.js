@@ -269,6 +269,43 @@ function movieFlavorGenerator(spicy, sweet, savory, salty) {
     };
 }
 
+
+    // (Star) ==========================================
+    // Adding movie box to search results
+    //NEEDS WORK FOR FORMATTING
+    var convertedMovieQuery = "http://www.omdbapi.com/?t=" + convertedMovieSearch + "&apikey=" + omdbKey;
+    var convertedOMDBCall = $.ajax({
+        url: convertedMovieQuery,
+        method: "GET"
+    }).done(function(response) {
+        console.log(response);
+    });
+
+    var movieResultTitle = response.matches.Title
+    var movieResultYear = response.matches.Year
+    var movieResultRated = response.matches.Rated
+    var movieResultPlot = response.matches.Plot
+    var movieResultPoster = response.matches.Poster
+
+    var movieContainer = $("<div>").attr("id", “movie-box”);
+
+    var movieTitleDiv = $("<h2>").text(“Tonight, you’re watching " + movieResultTitle),
+    movieYearSpan = $("<h3>").text(“Released: " + movieResultYear),
+    movieRatedSpan = $("<h3>").text(“Rated: " + movieResultRated),
+    moviePlotDiv = $("<h3>").text(“Plot: " + movieResultPlot),
+    moviePosterImg= $(“<img>").attr("src", movieResultPoster);
+
+    movieContainer
+        .append(movieTitleDiv)
+        .append(movieYearSpan)
+        .append(movieRatedSpan
+            .append(moviePlotDiv
+    moviePosterImg
+    );
+    $("#mainInformationDiv").append(movieContainer;
+
+    // ==========================================
+
 //test function
 movieFlavorGenerator(8, 3, 6, 0);
 
@@ -318,7 +355,7 @@ function showRecipe() {
 
         var recipeNameDiv = $("<h2>").text("Recipe: " + yummlyObject.matches[i].recipeName),
             ingredientsDiv = $("<h3>").text("Ingredients: " + yummlyObject.matches[i].ingredients),
-            prepTimeDiv = $("<h3>").text("Prep time: " + prepTimeConverted + " minutes");
+            prepTimeDiv = $("<h3>").text("Prep time: " + prepTimeConverted + " minutes";
             howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
         recipeContainer
