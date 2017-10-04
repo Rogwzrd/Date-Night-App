@@ -296,7 +296,7 @@ $("#submit").click(function(e) {
 
     e.preventDefault();
 
-    debugger
+    
 
     //assign the parameters for the movies query
     var convertedMovie = movieFlavorGenerator(spicyVal, savoryVal, sweetVal, saltyVal);
