@@ -73,9 +73,8 @@ function omdbCall(query) {
         url: query,
         method: "GET"
     }).done(function(response) {
-        console.log(response);
-        var omdbObject = response;
-        // showMovie();
+        omdbObject = response;
+        showMovie();
     });
 }
 
@@ -96,7 +95,6 @@ function yummlyCall(queryURL) {
         })
         .done(function(response) {
             yummlyObject = response;
-            console.log(yummlyObject);
             showRecipe();
         });
 }
@@ -199,26 +197,33 @@ function movieFlavorGenerator(spicy, sweet, savory, salty) {
         var num = spicy
         var convertedMovieInput = movies.action[num.toString()][Math.floor(Math.random() * 4)];
         console.log(convertedMovieInput);
+        return convertedMovieInput.replace(/ /g, "+").toLowerCase();
 
         //if sweet is the dominant flavor
     } else if (sweet > spicy && sweet > savory && sweet > salty) {
         var num = sweet
         var convertedMovieInput = movies.drama[num.toString()][Math.floor(Math.random() * 4)];
         console.log(convertedMovieInput);
+        return convertedMovieInput.replace(/ /g, "+").toLowerCase();
 
         //if savory is the dominant flavor
     } else if (savory > sweet && savory > savory && spicy > salty) {
         var num = savory
         var convertedMovieInput = movies.romance[num.toString()][Math.floor(Math.random() * 4)];
         console.log(convertedMovieInput);
+        return convertedMovieInput.replace(/ /g, "+").toLowerCase();
 
         //if salty is the dominant flavor
     } else if (salty > sweet && salty > savory && salty > spicy) {
         var num = salty
         var convertedMovieInput = movies.horror[num.toString()][Math.floor(Math.random() * 4)];
         console.log(convertedMovieInput);
-    };
-    return convertedMovieInput;
+        return convertedMovieInput.replace(/ /g, "+").toLowerCase();
+    } else {
+        var num =Math.floor(Math.random() * 9);
+        var convertedMovieInput = movies.romance[num.toString()][Math.floor(Math.random() * 4)]
+        return convertedMovieInput.replace(/ /g, "+")
+    }
 }
 
 //current iteratino of query functiono missing the diet and cuisine query types
@@ -227,7 +232,7 @@ function makeRecipeQuery(include, exclude, spicy, savory, sweet, salty) {
 
     var conCattedUrl = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
 
-    console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty));
+    console.log(conCattedUrl);
 
     return conCattedUrl
 }
@@ -253,43 +258,46 @@ function showRecipe() {
         var recipeNameDiv = $("<h2>").text("Recipe: " + yummlyObject.matches[i].recipeName),
             ingredientsDiv = $("<h3>").text("Ingredients: " + yummlyObject.matches[i].ingredients),
             prepTimeDiv = $("<h3>").text("Prep time: " + prepTimeConverted + " minutes");
-            howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
+        howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
         recipeContainer
             .append(recipeNameDiv)
             .append(ingredientsDiv)
             .append(prepTimeDiv)
             .append(howToMakeButton);
-      
+
         $("#recipe").append(recipeContainer);
     }
 };
 
 function showMovie() {
 
-        var movieContainer = $("<div>").attr("id", "movieContainer");
+    console.log(omdbObject)
 
-        var movieNameDiv = $("<h2>").text("Recipe: " + omdbObject.Title),
-            posterDiv = $("<h3>").html("<img src='" + omdbObject.Poster + "'");
-            // prepTimeDiv = $("<h3>").text("Prep time: " + yummlyObject.matches[i].totalTimeInSeconds),
-            // howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
+    var movieContainer = $("<div>").attr("id", "movieContainer");
 
-        movieContainer
-            .append(movieNameDiv)
-            .append(posterDiv);
-            // .append(prepTimeDiv)
-            // .append(howToMakeButton);
+    var movieNameDiv = $("<h2>").text("Title: " + omdbObject.Title),
+        posterDiv = $("<h3>").html("<img src='" + omdbObject.Poster + "'>");
+    // prepTimeDiv = $("<h3>").text("Prep time: " + yummlyObject.matches[i].totalTimeInSeconds),
+    // howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
-        $("#movie").append(movieContainer);
-    }
+    movieContainer
+        .append(movieNameDiv)
+        .append(posterDiv);
+    // .append(prepTimeDiv)
+    // .append(howToMakeButton);
+
+    $("#results").append(movieContainer);
+}
 
 //This function runs when you press the submit button on the main page
 $("#submit").click(function(e) {
 
     e.preventDefault();
 
-    //assign the parameters for the movies query
+    debugger
 
+    //assign the parameters for the movies query
     var convertedMovie = movieFlavorGenerator(spicyVal, savoryVal, sweetVal, saltyVal);
 
     console.log(convertedMovie)
