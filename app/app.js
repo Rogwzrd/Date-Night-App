@@ -113,7 +113,7 @@ function showMainPage() {
 
 //this funciton concatenates the ingredients api query
 function createIngredientsQuery(array) {
-    if (array !== []) {
+    if (array.length > 0) {
         for (var i = 0; i < array.length; i++) {
             var convertedIngredients = "&q=" + array[i];
             includeVal.push(convertedIngredients)
@@ -127,7 +127,7 @@ function createIngredientsQuery(array) {
 
 //this funciton concatenates the excluded api query
 function createExcludedQuery(array) {
-    if (array !== []) {
+    if (array.length > 0) {
         for (var i = 0; i < array.length; i++) {
             var convertedExcluded = "&excludedIngredient[]=" + array[i];
             allowedIngredients.push(convertedExcluded)
@@ -142,11 +142,7 @@ function createExcludedQuery(array) {
 //function for creating the flavor profile api query
 function createSpicyFlavorQuery(spicy) {
     if (spicy === 9) {
-        var convertedSpicy = "&flavor.piquant.min=0." + (spicy - 1) + "&flavor.piquant.max=1";
-        console.log(convertedSpicy);
-        return convertedSpicy;
-    } else if (spicy < 9 && spicy > 2) {
-        var convertedSpicy = "&flavor.piquant.min=0." + (spicy - 2) + "&flavor.piquant.max=0." + spicy;
+        var convertedSpicy = "&flavor.piquant.min=0.0&flavor.piquant.max=1";
         console.log(convertedSpicy);
         return convertedSpicy;
     } else {
@@ -158,11 +154,7 @@ function createSpicyFlavorQuery(spicy) {
 
 function createSweetFlavorQuery(sweet) {
     if (sweet == 9) {
-        var convertedSweet = "&flavor.sweet.min=0." + (sweet - 1) + "&flavor.sweet.max=1";
-        console.log(convertedSweet);
-        return convertedSweet;
-    } else if (sweet < 9 && sweet > 2) {
-        var convertedSweet = "&flavor.sweet.min=0." + (sweet - 2) + "&flavor.sweet.max=0." + sweet;
+        var convertedSweet = "&flavor.sweet.min=0.0&flavor.sweet.max=1";
         console.log(convertedSweet);
         return convertedSweet;
     } else {
@@ -174,11 +166,7 @@ function createSweetFlavorQuery(sweet) {
 
 function createSavoryFlavorQuery(savory) {
     if (savory == 9) {
-        var convertedSavory = "&flavor.meaty.min=0." + (savory - 1) + "&flavor.meaty.max=1";
-        console.log(convertedSavory);
-        return convertedSavory;
-    } else if (savory < 9 && savory > 2) {
-        var convertedSavory = "&flavor.meaty.min=0." + (savory - 2) + "&flavor.meaty.max=0." + savory;
+        var convertedSavory = "&flavor.meaty.min=0.0&flavor.meaty.max=1";
         console.log(convertedSavory);
         return convertedSavory;
     } else {
@@ -190,11 +178,7 @@ function createSavoryFlavorQuery(savory) {
 
 function createSaltyFlavorQuery(salty) {
     if (salty == 9) {
-        var convertedSalty = "&flavor.salty.min=0." + (salty - 1) + "&flavor.salty.max=1";
-        console.log(convertedSalty);
-        return convertedSalty;
-    } else if (salty < 9 && salty > 2) {
-        var convertedSalty = "&flavor.salty.min=0." + (salty - 2) + "&flavor.salty.max=0." + salty;
+        var convertedSalty = "&flavor.salty.min=0.0&flavor.salty.max=1";
         console.log(convertedSalty);
         return convertedSalty;
     } else {
@@ -237,7 +221,7 @@ function movieFlavorGenerator(spicy, sweet, savory, salty) {
 }
 
 //current iteratino of query functiono missing the diet and cuisine query types
-function makeRecipeQuery(include, exclude, spicy, salty, savory, sweet) {
+function makeRecipeQuery(include, exclude, spicy, savroy, sweet, salty) {
     var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b&requirePicture=true";
 
     var conCattedUrl = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
@@ -290,17 +274,7 @@ $("#submit").click(function(e) {
     excludeVal = $("#exclude").val().split(",");
     console.log(excludeVal);
 
-
-
-    console.log(spicyVal)
-
-    var queryURL = makeRecipeQuery(includeVal, excludeVal, spicyVal, saltyVal, savoryVal, sweetVal);
-    console.log(queryURL)
-
-
-    movieSearch = movieFlavorGenerator(spicyVal, saltyVal, savoryVal, sweetVal);
-
-    console.log(movieSearch)
+    console.log(makeRecipeQuery(includeVal, excludeVal, spicyVal, savoryVal, sweetVal, saltyVal))
 
 });
 
@@ -308,22 +282,24 @@ $("#submit").click(function(e) {
 //========Star===========================================================
 // Function for compiling search criteria and running recipe search
 //========NOT WORKING=============
-function getRecipeValues() {
-    var userIncludeInput = $("#search").val();
-    allowedIngredients.push(userIncludeInput);
-    for (var i = 0; i < allowedIngredients.length; i++) {
-        includeVal.push(allowedIngredients[i])
-    }
-    console.log(allowedIngredients);
+// function getRecipeValues() {
+//     var userIncludeInput = $("#search").val();
+//     allowedIngredients.push(userIncludeInput);
+//     for (var i = 0; i < allowedIngredients.length; i++) {
+//         includeVal.push(allowedIngredients[i])
+//     }
+//     console.log(allowedIngredients);
 
 
-    var userExcludeInput = $("#exclude").val();
-    excludedIngredients.push(userExcludeInput);
-    for (var i = 0; i < excludedIngredients.length; i++) {
-        excludeVal.push(excludedIngredients[i])
-    }
-    console.log(excludedIngredients);
-}
+//     var userExcludeInput = $("#exclude").val();
+//     excludedIngredients.push(userExcludeInput);
+//     for (var i = 0; i < excludedIngredients.length; i++) {
+//         excludeVal.push(excludedIngredients[i])
+//     }
+//     console.log(excludedIngredients);
+// }
+
+
 // ==================Star=========================================
 // Flavor variables change based on respective slider value
 $(".slider").on("change", function() {
