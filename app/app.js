@@ -258,7 +258,7 @@ function showRecipe() {
         var recipeNameDiv = $("<h2>").text("Recipe: " + yummlyObject.matches[i].recipeName),
             ingredientsDiv = $("<h3>").text("Ingredients: " + yummlyObject.matches[i].ingredients),
             prepTimeDiv = $("<h3>").text("Prep time: " + prepTimeConverted + " minutes");
-        howToMakeButton = $("<a>").attr("href", "http://www.yummly.com/recipe/" + yummlyObject.matches[i].id).html("<button>Learn How To Make</button>");
+        howToMakeButton = $("<a>").attr("target", "_blank").attr("href", "http://www.yummly.com/recipe/" + yummlyObject.matches[i].id).html("<button class='ui blue button'>Learn How To Make</button>");
 
 
         recipeContainer
