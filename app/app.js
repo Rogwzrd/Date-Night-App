@@ -49,14 +49,14 @@ var movies = {
     }
 };
 //global values used for recipe search
-var dietaryVal = [],
-    cuisineVal = "",
-    includeVal = [],
+
+var includeVal = [],
     excludeVal = [],
-    spicyVal = 3,
-    savoryVal = 5,
-    saltyVal = 8,
-    sweetVal = 2;
+    spicyVal = 0,
+    savoryVal = 0,
+    saltyVal = 0,
+    sweetVal = 0;
+
 
 //search terms and key for api
 
@@ -65,37 +65,35 @@ var movieSearch = movies.action["9"][Math.floor(Math.random() * 4)];
 var omdbKey = "40e9cece"
 //omdb query url
 var omdbQueryURL = "http://www.omdbapi.com/?t=" + movieSearch + "&apikey=" + omdbKey;
+var omdbObject = {};
 
 //omdb api call
-var omdbCall = $.ajax({
-    url: omdbQueryURL,
-    method: "GET"
-}).done(function(response) {
-    console.log(response);
-});
+function omdbCall(query) {
+    $.ajax({
+        url: query,
+        method: "GET"
+    }).done(function(response) {
+        console.log(response);
+        var omdbObject = response;
+        showMovie();
+    });
+}
 
 //search terms and key for api
-var foodSearch = "curry";
 var yummlyKey = "af6e286e83053654370aa379046e6c3b";
-var allowedIngredients = ["ham"];
-var excludedIngredients = ["cheese"];
-var allowedAllergery = [];
-var allowedDiet = [];
-var allowedCuisine = [];
-var excludedCuisine = [];
-var maxTotalTime = 0;
+var allowedIngredients = [];
+var excludedIngredients = [];
 var yummlyObject = {};
 //api query
-var yummlyQueryURL = makeRecipeQuery(allowedIngredients, excludedIngredients, spicyVal, savoryVal, sweetVal, saltyVal);
+
 
 //yummly api call
-
 function yummlyCall(queryURL) {
     console.log(queryURL);
     $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
+            url: queryURL,
+            method: "GET"
+        })
         .done(function(response) {
             yummlyObject = response;
             console.log(yummlyObject);
@@ -118,122 +116,76 @@ function showMainPage() {
 //this funciton concatenates the ingredients api query
 
 function createIngredientsQuery(array) {
-    for (var i = 0; i < array.length; i++) {
-        var convertedIngredients = "&alllowedIngredient[]=" + array[i];
-        includeVal.push(convertedIngredients)
-    };
-    console.log(includeVal)
-    return includeVal
+    if (array.length > 0) {
+        for (var i = 0; i < array.length; i++) {
+            var convertedIngredients = "&q=" + array[i];
+            allowedIngredients.push(convertedIngredients)
+        };
+        return allowedIngredients
+    } else {
+        return ""
+    }
 };
+
 //this funciton concatenates the excluded api query
 function createExcludedQuery(array) {
-    for (var i = 0; i < array.length; i++) {
-        var convertedExcluded = "&excludedIngredient[]=" + array[i];
-        excludeVal.push(convertedExcluded)
-    };
-    console.log(excludeVal)
-    return excludeVal
+    if (array.length > 0) {
+        for (var i = 0; i < array.length; i++) {
+            var convertedExcluded = "&excludedIngredient[]=" + array[i];
+            excludedIngredients.push(convertedExcluded)
+        };
+        return excludedIngredients
+    } else {
+        return ""
+    }
 };
 
-
-//this function concatenates the diet api query
-//this function needs additional concatenation code
-function createDietQuery(array) {
-    if (array.indexOf("atkins") !== -1) {
-        console.log("atkins diet added")
-        return "atkins"
-    };
-    if (array.indexOf("gluten-free") !== -1) {
-        console.log("gluten-free diet added")
-        return "gluten-free"
-    }
-    if (array.indexOf("paleo") !== -1) {
-        console.log("paleo diet added")
-        return "paleo"
-    }
-    if (array.indexOf("pescaterian") !== -1) {
-        console.log("pescaterian diet added")
-        return "pescaterian"
-    }
-    if (array.indexOf("vegan") !== -1) {
-        console.log("vegan diet added")
-        return "vegan"
-    }
-    if (array.indexOf("vegetarian") !== -1) {
-        console.log("vegetarian diet added")
-        return "vegetarian"
-    }
-    if (array.indexOf("south-beach") !== -1) {
-        console.log("south-beach diet added")
-        return "south-beach"
-    }
-}
-
-
-//execute function
-createDietQuery(["atkins", "pescaterian", "south-beach"])
-
 //function for creating the flavor profile api query
+//i added code that if a a button is set to 0 it doesn't add the query at all
 function createSpicyFlavorQuery(spicy) {
-    if (spicy === 9) {
-        var convertedSpicy = "&flavor.piquant.min=0." + (spicy - 1) + "&flavor.piquant.max=1";
-        console.log(convertedSpicy);
-        return convertedSpicy;
-    } else if (spicy < 9 && spicy > 2) {
-        var convertedSpicy = "&flavor.piquant.min=0." + (spicy - 2) + "&flavor.piquant.max=0." + spicy;
-        console.log(convertedSpicy);
+    if (spicy == 0) {
+        return ""
+    } else if (spicy === 9) {
+        var convertedSpicy = "&flavor.piquant.min=0.0&flavor.piquant.max=1";
         return convertedSpicy;
     } else {
         var convertedSpicy = "&flavor.piquant.min=0.0&flavor.piquant.max=0." + spicy;
-        console.log(convertedSpicy);
         return convertedSpicy;
     }
 };
 
 function createSweetFlavorQuery(sweet) {
-    if (sweet == 9) {
-        var convertedSweet = "&flavor.sweet.min=0." + (sweet - 1) + "&flavor.sweet.max=1";
-        console.log(convertedSweet);
-        return convertedSweet;
-    } else if (sweet < 9 && sweet > 2) {
-        var convertedSweet = "&flavor.sweet.min=0." + (sweet - 2) + "&flavor.sweet.max=0." + sweet;
-        console.log(convertedSweet);
+    if (sweet == 0) {
+        return ""
+    } else if (sweet == 9) {
+        var convertedSweet = "&flavor.sweet.min=0.0&flavor.sweet.max=1";
         return convertedSweet;
     } else {
         var convertedSweet = "&flavor.sweet.min=0.0&flavor.sweet.max=0." + sweet;
-        console.log(convertedSweet);
         return convertedSweet;
     }
 };
 
 function createSavoryFlavorQuery(savory) {
-    if (savory == 9) {
-        var convertedSavory = "&flavor.meaty.min=0." + (savory - 1) + "&flavor.meaty.max=1";
-        console.log(convertedSavory);
-        return convertedSavory;
-    } else if (savory < 9 && savory > 2) {
-        var convertedSavory = "&flavor.meaty.min=0." + (savory - 2) + "&flavor.meaty.max=0." + savory;
-        console.log(convertedSavory);
+    if (savory == 0) {
+        return ""
+    } else if (savory == 9) {
+        var convertedSavory = "&flavor.meaty.min=0.0&flavor.meaty.max=1";
         return convertedSavory;
     } else {
         var convertedSavory = "&flavor.meaty.min=0.0&flavor.meaty.max=0." + savory;
-        console.log(convertedSavory);
         return convertedSavory;
     }
 };
 
 function createSaltyFlavorQuery(salty) {
-    if (salty == 9) {
-        var convertedSalty = "&flavor.salty.min=0." + (salty - 1) + "&flavor.salty.max=1";
-        console.log(convertedSalty);
-        return convertedSalty;
-    } else if (salty < 9 && salty > 2) {
-        var convertedSalty = "&flavor.salty.min=0." + (salty - 2) + "&flavor.salty.max=0." + salty;
-        console.log(convertedSalty);
+    if (salty == 0) {
+        return ""
+    } else if (salty == 9) {
+        var convertedSalty = "&flavor.salty.min=0.0&flavor.salty.max=1";
         return convertedSalty;
     } else {
         var convertedSalty = "&flavor.salty.min=0.0&flavor.salty.max=0." + salty;
-        console.log(convertedSalty);
         return convertedSalty;
     };
 }
@@ -246,56 +198,41 @@ function movieFlavorGenerator(spicy, sweet, savory, salty) {
     //if spicy is the dominant flavor
     if (spicy > sweet && spicy > savory && spicy > salty) {
         var num = spicy
-        convertedMovieSearch = movies.action[num.toString()][Math.floor(Math.random() * 4)];
-        console.log(convertedMovieSearch);
+        convertedMovieInput = movies.action[num.toString()][Math.floor(Math.random() * 4)];
+        console.log(convertedMovieInput);
 
         //if sweet is the dominant flavor
     } else if (sweet > spicy && sweet > savory && sweet > salty) {
         var num = sweet
-        convertedMovieSearch = movies.drama[num.toString()][Math.floor(Math.random() * 4)];
-        console.log(convertedMovieSearch);
+        convertedMovieInput = movies.drama[num.toString()][Math.floor(Math.random() * 4)];
+        console.log(convertedMovieInput);
 
         //if savory is the dominant flavor
     } else if (savory > sweet && savory > savory && spicy > salty) {
         var num = savory
-        convertedMovieSearch = movies.romance[num.toString()][Math.floor(Math.random() * 4)];
-        console.log(convertedMovieSearch);
+        convertedMovieInput = movies.romance[num.toString()][Math.floor(Math.random() * 4)];
+        console.log(convertedMovieInput);
 
         //if salty is the dominant flavor
     } else if (salty > sweet && salty > savory && salty > spicy) {
         var num = salty
-        convertedMovieSearch = movies.horror[num.toString()][Math.floor(Math.random() * 4)];
-        console.log(convertedMovieSearch);
+        convertedMovieInput = movies.horror[num.toString()][Math.floor(Math.random() * 4)];
+        console.log(convertedMovieInput);
     };
+    convertedMovie.push(convertedMovieInput);
 }
-
-//test function
-movieFlavorGenerator(8, 3, 6, 0);
-
-//IMPORTANT!!
-//this function ties all of the query fuctions together to make one master api search
-//higher functional query that accepts all query types
-// function makeRecipeQuery(include,exclude,diet,cuisine,spicy,salty,savory, sweet){
-//     var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b&requirePicture=true";
-//     function concatRecipeValues(){
-//         debugger;
-//         var conCattedUrp = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createDietQuery(diet) + createFlavorQuery(spicy, sweet, savory, salty);
-//         console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createDietQuery(diet) + createFlavorQuery(spicy, sweet, savory, salty))
-//     }
-//     concatRecipeValues();
-//
 
 //current iteratino of query functiono missing the diet and cuisine query types
-function makeRecipeQuery(include, exclude, spicy, salty, savory, sweet) {
-    var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b&requirePicture=true";
+function makeRecipeQuery(include, exclude, spicy, savory, sweet, salty) {
+    var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b";
 
-    function concatRecipeValues() {
-        var conCattedUrl = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
-        console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty));
-        return conCattedUrl
-    }
-    return concatRecipeValues();
+    var conCattedUrl = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
+
+    console.log(newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty));
+
+    return conCattedUrl
 }
+
 
 //rough code to show results of api code for recipe results
 // not working, in need of changes
@@ -311,8 +248,6 @@ function showRecipe() {
         var prepTimeConverted = moment.duration(prepTime, "seconds").asMinutes();
 
         console.log(prepTimeConverted);
-
-
         //========================================
         var recipeContainer = $("<div>").attr("id", "recipe-" + [i]);
 
@@ -326,102 +261,80 @@ function showRecipe() {
             .append(ingredientsDiv)
             .append(prepTimeDiv)
             .append(howToMakeButton);
-
-        $("#mainInformationDiv").append(recipeContainer);
+      
+        $("#recipe").append(recipeContainer);
     }
 };
 
-// //==============================================================
-// // (Brelon) Verified that recipe(s) would show up in the console
-// console.log(response.matches[0].recipeName);
-// // (Brelon)Verified that ingredient(s) would shou up in the console
-// console.log(response.matches[0].ingredients);
-// // (Brelon) Created a div to 'hold' our recipes
-// var recipeDiv = $("<div>");
-// // (Brelon) Created a div to 'hold' our ingredients
-// var ingDiv = $("<div>");
-// // (Brelon) Display the recipe and ingredients on the page
-// // hint: make sure recipe is above the ingredients
+function showMovie() {
 
+        var movieContainer = $("<div>").attr("id", "movieContainer");
 
+        var movieNameDiv = $("<h2>").text("Recipe: " + omdbObject.Title),
+            posterDiv = $("<h3>").html("<img src='" + omdbObject.Poster + "'");
+            // prepTimeDiv = $("<h3>").text("Prep time: " + yummlyObject.matches[i].totalTimeInSeconds),
+            // howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
+        movieContainer
+            .append(movieNameDiv)
+            .append(posterDiv);
+            // .append(prepTimeDiv)
+            // .append(howToMakeButton);
 
-//dropdown selections
-$('.ui.dropdown').dropdown();
-
-// ===========================================================
-// (Star) - I replaced the previous function with these two functions
-// The variables for diet and cuisine now change values based on dropdown selections
-$("#diet").on("change", function() {
-    dietaryVal = $("#diet").val();
-    console.log(dietaryVal);
-});
-
-$("#cuisine").on("change", function() {
-    cuisineVal = $("#cuisine").val();
-    console.log(cuisineVal);
-});
-
-//============================================================
-
+        $("#movie").append(movieContainer);
+    }
 
 //This function runs when you press the submit button on the main page
 $("#submit").click(function(e) {
+
     e.preventDefault();
 
-    //adds dummy text for recipe results page
-    $("#mainInformationDiv").append("<h1>" + "recipe results...");
+    //assign the parameters for the movies query
+    var convertedMovie = "";
+
+    movieFlavorGenerator(spicyVal, savoryVal, sweetVal, saltyVal)
+    console.log(convertedMovie.toLowerCase().replace(/ /g, "+" ))
+
+    var omdbKey = "40e9cece";
+    //omdb query url
+    var omdbQueryURL = "http://www.omdbapi.com/?t=" + convertedMovie + "&apikey=" + omdbKey;
+
+    omdbCall(omdbQueryURL);
+
+
+    //adds dummy text for recipe results page 
+    $("#recipe").append("<h1>" + "recipe results...");
 
     hideMainPage();
-    yummlyCall(yummlyQueryURL);
+    includeVal = $("#search").val().split(",");
+    console.log(includeVal);
+    excludeVal = $("#exclude").val().split(",");
+    console.log(excludeVal);
+
+
+    var recipeQueryURL = makeRecipeQuery(includeVal, excludeVal, spicyVal, savoryVal, sweetVal, saltyVal)
+
+    yummlyCall(recipeQueryURL);
 
 });
-
-
-//========Star===========================================================
-// Function for compiling search criteria and running recipe search
-//========NOT WORKING=============
-function searchRecipes() {
-    var userIncludeInput = $("#search").val();
-    includeVal.push(userIncludeInput)
-    console.log(includeVal);
-
-    var userExcludeInput = $("#exclude").val();
-    excludeVal.push(userExcludeInput)
-    console.log(excludeVal);
-}
 
 // ==================Star=========================================
 // Flavor variables change based on respective slider value
 $(".slider").on("change", function() {
-    sweetVal = $("#rangeSlider1").val();
-    console.log("the sweetness  is " + sweetVal)
-    saltyVal = $("#rangeSlider2").val();
-    console.log("the saltiness  is " + saltyVal)
-    savoryVal = $("#rangeSlider3").val();
-    console.log("the savoryness  is " + savoryVal);
-    spicyVal = $("#rangeSlider4").val();
+    spicyVal = $("#rangeSlider1").val();
     console.log("the spiciness  is " + spicyVal);
+    savoryVal = $("#rangeSlider2").val();
+    console.log("the savoryness  is " + savoryVal);
+    saltyVal = $("#rangeSlider3").val();
+    console.log("the saltiness  is " + saltyVal)
+    sweetVal = $("#rangeSlider4").val();
+    console.log("the sweetness  is " + sweetVal)
 
 });
-
-
-// Here's some pseudocode to get the ball rolling on how to
-// apply the value of a slider to the movie search api. It needs a lot of work.
-// movieSearch = movies.===whichever slider was used===.====index to match slider value
-// === then use math.random(math.floor) to determine which item in that array will be searched.
-
 
 //==================================================================
 
-$(document).on("click", "#flavorPage", function(event) {
-    event.preventDefault();
-
-});
-
 //================== Chance ===================================
-
-
 //Returns the value of the variable call like a regular function Ex: userRangeSliderValue1();
 //left down here to be used later
 var userRangeSliderValue1 = function() {
@@ -458,4 +371,5 @@ function captureSliderChange3(val) {
 function captureSliderChange4(val) {
     document.getElementById("slider4HTMLUpdate").innerHTML = val;
 }
+
 //=========================================================
