@@ -1,14 +1,14 @@
 var movies = {
     action: {
         "0": ["Star Wars: Episode V - The Empire Strikes Back", "Spartacus", "Sicario", "The Lord of the Rings: The Two Towers", "Chicken Run"],
-        "1": ["Badlands", "Aguirre, the Wrath of God", "Casino Royale", "Hunt for the Wilderpeople", "The Lego Batman Movie"],
-        "2": ["Misison: Impossible Rogue Nation", "Kubo and the Two Strings", "Throne of Blood", "Once Upon a Time in the West", "Captain America: Civil War"],
-        "3": ["Star Wars: Episode IV - A New Hope", "The French Connection", "Iron Man", "Marvel's The Avengers", "Aliens"],
+        "1": ["Badlands", "Aguirre the Wrath of God", "Casino Royale", "Hunt for the Wilderpeople", "The Lego Batman Movie"],
+        "2": ["Misison Impossible Rogue Nation", "Kubo and the Two Strings", "Throne of Blood", "Once Upon a Time in the West", "Captain America Civil War"],
+        "3": ["Star Wars Episode IV A New Hope", "The French Connection", "Iron Man", "Marvels The Avengers", "Aliens"],
         "4": ["The LEGO Movie", "The Searchers", "Star Trek", "Moana", "The Terminator"],
         "5": ["Apocalyse Now", "Harry Potter and the Deathly Hallows-Part 2", "Jaws", "WALL-E", "The Hurt Locker"],
-        "6": ["The 39 Steps", "Skyfall", "The Jungle Book", "Spider-Man: Homecoming", "War for the Planet of the Apes"],
+        "6": ["The 39 Steps", "Skyfall", "The Jungle Book", "Spider-Man Homecoming", "War for the Planet of the Apes"],
         "7": ["The Treasure of Sierra Madre", "Up", "Baby Driver", "Lawrence of Arabia", "The Dark Knight"],
-        "8": ["The Adventure of Robin Hood", "Logan", "Star Wars: Episode VII", "Zootopia", "Seven Samurai"],
+        "8": ["The Adventure of Robin Hood", "Logan", "Star Wars Episode VII", "Zootopia", "Seven Samurai"],
         "9": ["Mad Max: Fury Road", "Metropolis", "Dunkirk", "Wonder Woman", "King Kong"]
     },
     drama: {
@@ -24,12 +24,12 @@ var movies = {
         "9": ["Ciizen Kane", "All About Eve", "Metropolis", "The Godfather", "Dunkirk"]
     },
     romance: {
-        "0": ["West Side Story", "Say Anything...", "The Apartment", "Elevartor to the Gallows", "Groundhog Day"],
+        "0": ["West Side Story", "Say Anything", "The Apartment", "Elevartor to the Gallows", "Groundhog Day"],
         "1": ["The Happiest Day in the Life of Olli Maki", "Only Yesteerday", "Lost in Translation", "The Crying Game"],
         "2": ["Your Name.", "Crouching Tiger, Hidden Dragon", "Wings of Desire", "Sense and Sensibility", "The Handmaiden"],
         "3": ["The Princess Bride", "Sideways", "Enough Said", "Slumdog Millionaire", "Bull Durham"],
-        "4": ["Before Sunrise", "Three Colors: Blue", "Bringing Up Baby", "The Hustler", "Sunrise: A Song of Two Humans"],
-        "5": ["Her", "The Umbrellas of Cherbourg", "Beauty and the Beast", "Three Colors: Red", "The Best Years of Our Lives"],
+        "4": ["Before Sunrise", "Three Colors: Blue", "Bringing Up Baby", "The Hustler", "Sunrise A Song of Two Humans"],
+        "5": ["Her", "The Umbrellas of Cherbourg", "Beauty and the Beast", "Three Colors Red", "The Best Years of Our Lives"],
         "6": ["City Lights", "Annie Hall", "Miracle on 34th Street", "Beauty and the Beast", "Gentelman Prefer Blondes"],
         "7": ["An American in Paris", "Before Midnight", "The Red Shoes", "The Artist", "Carol"],
         "8": ["The Philadelphia Story", "Vertigo", "Gone with the Wind", "On the Waterfront", "Roman Holiday"],
@@ -42,10 +42,10 @@ var movies = {
         "3": ["The Evil Dead", "Invasion of the Body Snatchers", "Young Frankenstein", "Carrie", "Halloween"],
         "4": ["The Innocents", "Silence of the Lambs", "Cat People", "A Girl Walks Home Alone at Night", "Drag Me to Hell"],
         "5": ["The Cabin in the Woods", "Night of the Living Deaad", "Don't Look Now", "The Vanishing", "Under The Shadow"],
-        "6": ["Pan's labyrinth", "Evil Dead 2: Dead by Dawn", "The Birds", "Gojira", "The Witch"],
+        "6": ["Pan's labyrinth", "Evil Dead 2 Dead by Dawn", "The Birds", "Gojira", "The Witch"],
         "7": ["It Follows", "Let the Right One In", "Aliens", "Freaks", "Eyes Without a Face"],
         "8": ["Repulsion", "The Bride of Frankenstein", "The Babadook", "Frankenstein", "Rosemary's Baby"],
-        "9": ["Get Out", "The Cabinet of Dr. Caligari", "Psycho", "Nosferatu, a Symphony of Horror", "King Kong"]
+        "9": ["Get Out", "The Cabinet of Dr. Caligari", "Psycho", "Nosferatu a Symphony of Horror", "King Kong"]
     }
 };
 //global values used for recipe search
