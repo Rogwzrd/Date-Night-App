@@ -111,7 +111,7 @@ function showMainPage() {
     $("#mainPage").show();
 }
 
-//this funciton concatenates the ingredients api query
+//this function concatenates the ingredients api query
 
 function createIngredientsQuery(array) {
     if (array.length > 0) {
@@ -226,7 +226,7 @@ function movieFlavorGenerator(spicy, sweet, savory, salty) {
     }
 }
 
-//current iteratino of query functiono missing the diet and cuisine query types
+//current iteratino of query function missing the diet and cuisine query types
 function makeRecipeQuery(include, exclude, spicy, savory, sweet, salty) {
     var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b";
 
@@ -242,7 +242,7 @@ function makeRecipeQuery(include, exclude, spicy, savory, sweet, salty) {
 // not working, in need of changes
 function showRecipe() {
 
-    // for loop that itterates through the 10 matches from the api call
+    // for loop that iterates through the 10 matches from the api call
     for (var i = 0; i < yummlyObject.matches.length; i++) {
         console.log(yummlyObject.matches[i])
 
