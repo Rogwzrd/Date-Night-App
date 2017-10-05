@@ -65,7 +65,7 @@ var typeVal = "",
 var movieSearch = movies.action["9"][Math.floor(Math.random() * 4)];
 var omdbKey = "40e9cece"
 //omdb query url
-var omdbQueryURL = "http://www.omdbapi.com/?t=" + movieSearch + "&plot=short&apikey=" + omdbKey;
+var omdbQueryURL = "https://www.omdbapi.com/?t=" + movieSearch + "&plot=short&apikey=" + omdbKey;
 var omdbObject = {};
 
 //omdb api call
@@ -237,7 +237,7 @@ function movieFlavorGenerator(spicy, sweet, savory, salty) {
 
 //current iteratino of query functiono missing the diet and cuisine query types
 function makeRecipeQuery(type, include, exclude, spicy, savory, sweet, salty) {
-    var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b";
+    var newQuery = "https://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b";
 
     var conCattedUrl = newQuery + createMealQuery(type) + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
 
@@ -319,7 +319,7 @@ $("#submit").click(function(e) {
 
     var omdbKey = "40e9cece";
     //omdb query url
-    var omdbQueryURL = "http://www.omdbapi.com/?t=" + convertedMovie + "&plot=short&apikey=" + omdbKey;
+    var omdbQueryURL = "https://www.omdbapi.com/?t=" + convertedMovie + "&plot=short&apikey=" + omdbKey;
 
     omdbCall(omdbQueryURL);
 
