@@ -76,6 +76,7 @@ function omdbCall(query) {
     }).done(function(response) {
         omdbObject = response;
         showMovie();
+        console.log(response)
     });
 }
 
@@ -303,6 +304,7 @@ $("#submit").click(function(e) {
     //omdb query url
     var omdbQueryURL = "https://www.omdbapi.com/?t=" + convertedMovie + "&plot=short&apikey=" + omdbKey;
 
+    omdbCall(omdbQueryURL);
 
 
     //adds dummy text for recipe results page 
