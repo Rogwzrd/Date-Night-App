@@ -17,40 +17,43 @@
         <div id="mainPage">
             <div id="search-form">
                 <!--<div>-->
-                    <!--<h4>Dietary Restrictions</h4>-->
-                    <!--<select class="ui fluid selection dropdown" multiple="" id="diet" name="diet">-->
-                        <!--<option value="">Select Your Diet</option>-->
-                        <!--<option value="atkins">Atkins</option>-->
-                        <!--<option value="gluten-free">Gluten Free</option>-->
-                        <!--<option value="paleo">Paleo</option>-->
-                        <!--<option value="pescetarian">Pescetarian</option>-->
-                        <!--<option value="vegan">Vegan</option>-->
-                        <!--<option value="vegetarian">Vegetarian</option>-->
-                        <!--<option value="south-beach">South Beach</option>-->
-                    <!--</select>-->
+                <!--<h4>Dietary Restrictions</h4>-->
+                <!--<select class="ui fluid selection dropdown" multiple="" id="diet" name="diet">-->
+                <!--<option value="">Select Your Diet</option>-->
+                <!--<option value="atkins">Atkins</option>-->
+                <!--<option value="gluten-free">Gluten Free</option>-->
+                <!--<option value="paleo">Paleo</option>-->
+                <!--<option value="pescetarian">Pescetarian</option>-->
+                <!--<option value="vegan">Vegan</option>-->
+                <!--<option value="vegetarian">Vegetarian</option>-->
+                <!--<option value="south-beach">South Beach</option>-->
+                <!--</select>-->
                 <!--</div>-->
                 <!--<div>-->
-                    <!--<h4>Cuisine</h4>-->
-                    <!--<select class="ui fluid selection dropdown" id="cuisine">-->
-                        <!--<option value="">Select Cuisine</option>-->
-                        <!--<option class="item" data-value="brazillian">Brazillian</option>-->
-                        <!--<option class="item" data-value="chinese">Chinese</option>-->
-                        <!--<option class="item" data-value="greek">Greek</option>-->
-                        <!--<option class="item" data-value="indian">Indian</option>-->
-                        <!--<option class="item" data-value="italian">Italian</option>-->
-                        <!--<option class="item" data-value="japanese">Japanese</option>-->
-                        <!--<option class="item" data-value="mexican">Mexican</option>-->
-                        <!--<option class="item" data-value="thai">Thai</option>-->
-                    <!--</select>-->
+                <!--<h4>Cuisine</h4>-->
+                <!--<select class="ui fluid selection dropdown" id="cuisine">-->
+                <!--<option value="">Select Cuisine</option>-->
+                <!--<option class="item" data-value="brazillian">Brazillian</option>-->
+                <!--<option class="item" data-value="chinese">Chinese</option>-->
+                <!--<option class="item" data-value="greek">Greek</option>-->
+                <!--<option class="item" data-value="indian">Indian</option>-->
+                <!--<option class="item" data-value="italian">Italian</option>-->
+                <!--<option class="item" data-value="japanese">Japanese</option>-->
+                <!--<option class="item" data-value="mexican">Mexican</option>-->
+                <!--<option class="item" data-value="thai">Thai</option>-->
+                <!--</select>-->
                 <!--</div>-->
                 <h4>I'm in the mood for:</h4>
+                <div class="ui fluid input">
+                    <input type="text" id="type" placeholder="type of food...">
+                </div>
+                <h4>I want this in it:</h4>
                 <div class="ui fluid input">
                     <input type="text" id="search" placeholder="Ingredients to include">
                 </div>
             </div>
             <div>
                 <h4>But I don't want:</h4>
-
                 <div class="ui fluid input">
                     <input type="text" id="exclude" placeholder="Exclude...">
                 </div>
@@ -73,7 +76,8 @@
             </div>
             <button class="ui blue button" id="submit" type="submit">Submit</button>
         </div>
-        <div id="results"></div>
+        <div id="results">
+        </div>
         <div id="recipe"></div>
     </div>
 </body>
