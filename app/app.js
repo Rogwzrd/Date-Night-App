@@ -89,7 +89,6 @@ var yummlyObject = {};
 
 //yummly api call
 function yummlyCall(queryURL) {
-    console.log(queryURL);
     $.ajax({
             url: queryURL,
             method: "GET"
@@ -198,35 +197,31 @@ function createSaltyFlavorQuery(salty) {
 }
 
 //this function will determine the movie to searched in the api from the movie data structure
-//not currently working
+
 function movieFlavorGenerator(spicy, sweet, savory, salty) {
 
     //if spicy is the dominant flavor
     if (spicy > sweet && spicy > savory && spicy > salty) {
         var num = spicy
         var convertedMovieInput = movies.action[num.toString()][Math.floor(Math.random() * 4)];
-        console.log(convertedMovieInput);
         return convertedMovieInput.replace(/ /g, "+").toLowerCase();
 
         //if sweet is the dominant flavor
     } else if (sweet > spicy && sweet > savory && sweet > salty) {
         var num = sweet
         var convertedMovieInput = movies.drama[num.toString()][Math.floor(Math.random() * 4)];
-        console.log(convertedMovieInput);
         return convertedMovieInput.replace(/ /g, "+").toLowerCase();
 
         //if savory is the dominant flavor
     } else if (savory > sweet && savory > savory && spicy > salty) {
         var num = savory
         var convertedMovieInput = movies.romance[num.toString()][Math.floor(Math.random() * 4)];
-        console.log(convertedMovieInput);
         return convertedMovieInput.replace(/ /g, "+").toLowerCase();
 
         //if salty is the dominant flavor
     } else if (salty > sweet && salty > savory && salty > spicy) {
         var num = salty
         var convertedMovieInput = movies.horror[num.toString()][Math.floor(Math.random() * 4)];
-        console.log(convertedMovieInput);
         return convertedMovieInput.replace(/ /g, "+").toLowerCase();
     } else {
         var num = Math.floor(Math.random() * 9);
@@ -241,30 +236,20 @@ function makeRecipeQuery(type, include, exclude, spicy, savory, sweet, salty) {
 
     var conCattedUrl = newQuery + createMealQuery(type) + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
 
-    console.log(conCattedUrl);
-
     return conCattedUrl
 }
 
 
-//rough code to show results of api code for recipe results
-// not working, in need of changes
+//code to show results of api code for recipe results
+
 function showRecipe() {
 
     // for loop that itterates through the 10 matches from the api call
     for (var i = 0; i < yummlyObject.matches.length; i++) {
-        console.log(yummlyObject.matches[i])
 
-        // (Star) ================================
-        // Converting prep time seconds to minutes
         var prepTime = yummlyObject.matches[i].totalTimeInSeconds;
         var prepTimeConverted = moment.duration(prepTime, "seconds").asMinutes();
 
-        console.log(prepTimeConverted);
-        //========================================
-
-        // (Mike) =================================
-        //html styling for the page
         var recipeContainer = $("<div>").attr("id", "recipe-" + [i]);
 
         var recipeContent = `<div class="ui top attached tabular menu">
@@ -278,14 +263,13 @@ function showRecipe() {
                               </div>`;
 
         recipeContainer.append(recipeContent);
+
         $("#recipe").append(recipeContainer);
-        //==========================================
     }
 };
 
 function showMovie() {
 
-    console.log(omdbObject)
     var backButton = `<button class="ui blue button" id="back" type="submit">Go Back to the Input Page</button>`;
 
     var movieContainer = $("<div>").attr("id", "movieContainer").attr("class", "ui container");
@@ -315,13 +299,10 @@ $("#submit").click(function(e) {
     //assign the parameters for the movies query
     var convertedMovie = movieFlavorGenerator(spicyVal, savoryVal, sweetVal, saltyVal);
 
-    console.log(convertedMovie)
-
     var omdbKey = "40e9cece";
     //omdb query url
     var omdbQueryURL = "https://www.omdbapi.com/?t=" + convertedMovie + "&plot=short&apikey=" + omdbKey;
 
-    omdbCall(omdbQueryURL);
 
 
     //adds dummy text for recipe results page 
@@ -329,11 +310,10 @@ $("#submit").click(function(e) {
 
     hideMainPage();
     var typeVal = $("#type").val().replace(/ /g, "+");
-    console.log(typeVal)
+
     includeVal = $("#search").val().split(", ");
-    console.log(includeVal);
+
     excludeVal = $("#exclude").val().split(", ");
-    console.log(excludeVal);
 
 
     var recipeQueryURL = makeRecipeQuery(typeVal, includeVal, excludeVal, spicyVal, savoryVal, sweetVal, saltyVal)
@@ -358,13 +338,9 @@ $(document).on("click","#back", function(e) {
 // Flavor variables change based on respective slider value
 $(".slider").on("change", function() {
     spicyVal = $("#rangeSlider1").val();
-    console.log("the spiciness  is " + spicyVal);
     savoryVal = $("#rangeSlider2").val();
-    console.log("the savoryness  is " + savoryVal);
     saltyVal = $("#rangeSlider3").val();
-    console.log("the saltiness  is " + saltyVal)
     sweetVal = $("#rangeSlider4").val();
-    console.log("the sweetness  is " + sweetVal)
 
 });
 
