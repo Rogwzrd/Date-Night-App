@@ -100,3 +100,11 @@ button {
 }
 
 
+
+/*====================Media Query=========================== */
+
+@media screen and (max-width: 455px){
+    .slider {
+        max-width: 40%;
+    }
+}
