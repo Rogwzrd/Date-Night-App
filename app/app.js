@@ -50,7 +50,8 @@ var movies = {
 };
 //global values used for recipe search
 
-var includeVal = [],
+var typeVal = "",
+    includeVal = [],
     excludeVal = [],
     spicyVal = 0,
     savoryVal = 0,
@@ -113,28 +114,36 @@ function showMainPage() {
 
 //this funciton concatenates the ingredients api query
 
+function createMealQuery(input) {
+    if (input !== "") {
+        return "&q=" + input;
+    } else {
+        return 
+    }
+};
+
 function createIngredientsQuery(array) {
-    if (array.length > 0) {
+    if (array !== "") {
         for (var i = 0; i < array.length; i++) {
-            var convertedIngredients = "&q=" + array[i];
+            var convertedIngredients = "&includedIngredients[]=" + array[i];
             allowedIngredients.push(convertedIngredients)
         };
-        return allowedIngredients
+        return "&q=" + allowedIngredients
     } else {
-        return ""
+        return 
     }
 };
 
 //this funciton concatenates the excluded api query
 function createExcludedQuery(array) {
-    if (array.length > 0) {
+    if (array !== "") {
         for (var i = 0; i < array.length; i++) {
             var convertedExcluded = "&excludedIngredient[]=" + array[i];
             excludedIngredients.push(convertedExcluded)
         };
         return excludedIngredients
     } else {
-        return ""
+        return 
     }
 };
 
@@ -220,17 +229,17 @@ function movieFlavorGenerator(spicy, sweet, savory, salty) {
         console.log(convertedMovieInput);
         return convertedMovieInput.replace(/ /g, "+").toLowerCase();
     } else {
-        var num =Math.floor(Math.random() * 9);
+        var num = Math.floor(Math.random() * 9);
         var convertedMovieInput = movies.romance[num.toString()][Math.floor(Math.random() * 4)]
         return convertedMovieInput.replace(/ /g, "+")
     }
 }
 
 //current iteratino of query functiono missing the diet and cuisine query types
-function makeRecipeQuery(include, exclude, spicy, savory, sweet, salty) {
+function makeRecipeQuery(type, include, exclude, spicy, savory, sweet, salty) {
     var newQuery = "http://api.yummly.com/v1/api/recipes?_app_id=d10c5b70&_app_key=af6e286e83053654370aa379046e6c3b";
 
-    var conCattedUrl = newQuery + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
+    var conCattedUrl = newQuery + createMealQuery(type) + createIngredientsQuery(include) + createExcludedQuery(exclude) + createSpicyFlavorQuery(spicy) + createSavoryFlavorQuery(savory) + createSweetFlavorQuery(sweet) + createSaltyFlavorQuery(salty);
 
     console.log(conCattedUrl);
 
@@ -253,38 +262,44 @@ function showRecipe() {
 
         console.log(prepTimeConverted);
         //========================================
+
+        // (Mike) =================================
+        //html styling for the page
         var recipeContainer = $("<div>").attr("id", "recipe-" + [i]);
 
-        var recipeNameDiv = $("<h2>").text("Recipe: " + yummlyObject.matches[i].recipeName),
-            ingredientsDiv = $("<h3>").text("Ingredients: " + yummlyObject.matches[i].ingredients),
-            prepTimeDiv = $("<h3>").text("Prep time: " + prepTimeConverted + " minutes");
-        howToMakeButton = $("<a>").attr("target", "_blank").attr("href", "http://www.yummly.com/recipe/" + yummlyObject.matches[i].id).html("<button class='ui blue button'>Learn How To Make</button>");
+        var recipeContent = `<div class="ui top attached tabular menu">
+                                <div class="active item">${yummlyObject.matches[i].recipeName}</div>
+                             </div>
+                             <div class="ui bottom attached active tab segment">
+                                <img src='${yummlyObject.matches[i].imagUrlsBySize}'>
+                                <p>Ingredients: ${yummlyObject.matches[i].ingredients}</p>
+                                <p>Cook time: ${prepTimeConverted}</p>
+                                <a href="http://www.yummly.com/recipe/${yummlyObject.matches[i].id}"><button class='ui blue button' target="_blank">Learn How To Make</button></a>
+                              </div>`;
 
-        recipeContainer
-            .append(recipeNameDiv)
-            .append(ingredientsDiv)
-            .append(prepTimeDiv)
-            .append(howToMakeButton);
-
+        recipeContainer.append(recipeContent);
         $("#recipe").append(recipeContainer);
+        //==========================================
     }
 };
 
 function showMovie() {
 
     console.log(omdbObject)
+    var backButton = `<button class="ui blue button" id="back" type="submit">Go Back to the Input Page</button>`;
 
-    var movieContainer = $("<div>").attr("id", "movieContainer");
+    var movieContainer = $("<div>").attr("id", "movieContainer").attr("class", "ui container");
 
     var movieNameDiv = $("<h2>").text("Title: " + omdbObject.Title),
         posterDiv = $("<h3>").html("<img src='" + omdbObject.Poster + "'>");
-        prepTimeDiv = $("<h3>").text("Plot: " + omdbObject.Plot),
-    // howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
+    plotDiv = $("<h3>").text("Plot: " + omdbObject.Plot);
+        // howToMakeButton = $("<a>").attr("src", "link goes here").html("<button>Learn How To Make</button>");
 
-    movieContainer
+        movieContainer
+        .append(backButton)
         .append(movieNameDiv)
         .append(posterDiv)
-        .append(prepTimeDiv);
+        .append(plotDiv);
     // .append(howToMakeButton);
 
     $("#results").append(movieContainer);
@@ -295,7 +310,7 @@ $("#submit").click(function(e) {
 
     e.preventDefault();
 
-    debugger
+    $("#results, #recipe").show();
 
     //assign the parameters for the movies query
     var convertedMovie = movieFlavorGenerator(spicyVal, savoryVal, sweetVal, saltyVal);
@@ -313,17 +328,31 @@ $("#submit").click(function(e) {
     $("#recipe").append("<h1>" + "recipe results...");
 
     hideMainPage();
-    includeVal = $("#search").val().split(",");
+    var typeVal = $("#type").val().replace(/ /g, "+");
+    console.log(typeVal)
+    includeVal = $("#search").val().split(", ");
     console.log(includeVal);
-    excludeVal = $("#exclude").val().split(",");
+    excludeVal = $("#exclude").val().split(", ");
     console.log(excludeVal);
 
 
-    var recipeQueryURL = makeRecipeQuery(includeVal, excludeVal, spicyVal, savoryVal, sweetVal, saltyVal)
+    var recipeQueryURL = makeRecipeQuery(typeVal, includeVal, excludeVal, spicyVal, savoryVal, sweetVal, saltyVal)
 
     yummlyCall(recipeQueryURL);
 
 });
+
+
+// (mike)===================================================
+//back button
+$(document).on("click","#back", function(e) {
+    e.preventDefault();
+
+    $("#results, #recipe").empty().hide();
+    showMainPage();
+
+})
+//=======================================================
 
 // ==================Star=========================================
 // Flavor variables change based on respective slider value
