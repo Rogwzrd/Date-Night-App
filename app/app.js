@@ -1,6 +1,6 @@
 var movies = {
     action: {
-        "0": ["Star Wars: Episode V - The Empire Strikes Back", "Spartacus", "Sicario", "The Lord of the Rings: The Two Towers", "Chicken Run"],
+        "0": ["Star Wars Episode V The Empire Strikes Back", "Spartacus", "Sicario", "The Lord of the Rings The Two Towers", "Chicken Run"],
         "1": ["Badlands", "Aguirre the Wrath of God", "Casino Royale", "Hunt for the Wilderpeople", "The Lego Batman Movie"],
         "2": ["Misison Impossible Rogue Nation", "Kubo and the Two Strings", "Throne of Blood", "Once Upon a Time in the West", "Captain America Civil War"],
         "3": ["Star Wars Episode IV A New Hope", "The French Connection", "Iron Man", "Marvels The Avengers", "Aliens"],
@@ -9,7 +9,7 @@ var movies = {
         "6": ["The 39 Steps", "Skyfall", "The Jungle Book", "Spider-Man Homecoming", "War for the Planet of the Apes"],
         "7": ["The Treasure of Sierra Madre", "Up", "Baby Driver", "Lawrence of Arabia", "The Dark Knight"],
         "8": ["The Adventure of Robin Hood", "Logan", "Star Wars Episode VII", "Zootopia", "Seven Samurai"],
-        "9": ["Mad Max: Fury Road", "Metropolis", "Dunkirk", "Wonder Woman", "King Kong"]
+        "9": ["Mad Max Fury Road", "Metropolis", "Dunkirk", "Wonder Woman", "King Kong"]
     },
     drama: {
         "0": ["The Wrestler", "La Confidential", "Gone With The Wind", "Open City", "Tokyo Story"],
@@ -28,7 +28,7 @@ var movies = {
         "1": ["The Happiest Day in the Life of Olli Maki", "Only Yesteerday", "Lost in Translation", "The Crying Game"],
         "2": ["Your Name.", "Crouching Tiger, Hidden Dragon", "Wings of Desire", "Sense and Sensibility", "The Handmaiden"],
         "3": ["The Princess Bride", "Sideways", "Enough Said", "Slumdog Millionaire", "Bull Durham"],
-        "4": ["Before Sunrise", "Three Colors: Blue", "Bringing Up Baby", "The Hustler", "Sunrise A Song of Two Humans"],
+        "4": ["Before Sunrise", "Before Sunset", "Bringing Up Baby", "The Hustler", "Sunrise A Song of Two Humans"],
         "5": ["Her", "The Umbrellas of Cherbourg", "Beauty and the Beast", "Three Colors Red", "The Best Years of Our Lives"],
         "6": ["City Lights", "Annie Hall", "Miracle on 34th Street", "Beauty and the Beast", "Gentelman Prefer Blondes"],
         "7": ["An American in Paris", "Before Midnight", "The Red Shoes", "The Artist", "Carol"],
@@ -38,7 +38,7 @@ var movies = {
     horror: {
         "0": ["Dracula", "Zombieland", "It", "Suspiria", "What Ever Happend to Baby Jane"],
         "1": ["Re-Animator", "A Nightmare on Elm Street", "Train to Busan", "The Host", "Shaun of the Dead"],
-        "2": ["The Loved Ones", "Nosferatu: Phanton der Nacht", "Room 237", "The Love Witch", 'It Comes at Night'],
+        "2": ["The Loved Ones", "Nosferatu Phanton der Nacht", "Room 237", "The Love Witch", 'It Comes at Night'],
         "3": ["The Evil Dead", "Invasion of the Body Snatchers", "Young Frankenstein", "Carrie", "Halloween"],
         "4": ["The Innocents", "Silence of the Lambs", "Cat People", "A Girl Walks Home Alone at Night", "Drag Me to Hell"],
         "5": ["The Cabin in the Woods", "Night of the Living Deaad", "Don't Look Now", "The Vanishing", "Under The Shadow"],
